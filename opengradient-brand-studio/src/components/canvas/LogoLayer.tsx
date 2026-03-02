@@ -2,15 +2,12 @@ import { useEditorStore } from '../../store/editorStore'
 import { getLogoPath } from '../../constants/logos'
 
 export function LogoLayer() {
-  const { logoEnabled, logoVariant, logoColor, logoPosition, logoScale, logoPadding } =
-    useEditorStore(s => ({
-      logoEnabled: s.logoEnabled,
-      logoVariant: s.logoVariant,
-      logoColor: s.logoColor,
-      logoPosition: s.logoPosition,
-      logoScale: s.logoScale,
-      logoPadding: s.logoPadding,
-    }))
+  const logoEnabled = useEditorStore(s => s.logoEnabled)
+  const logoVariant = useEditorStore(s => s.logoVariant)
+  const logoColor = useEditorStore(s => s.logoColor)
+  const logoPosition = useEditorStore(s => s.logoPosition)
+  const logoScale = useEditorStore(s => s.logoScale)
+  const logoPadding = useEditorStore(s => s.logoPadding)
 
   if (!logoEnabled) return null
 

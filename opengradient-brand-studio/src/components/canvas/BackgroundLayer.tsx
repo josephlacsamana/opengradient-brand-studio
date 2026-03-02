@@ -2,11 +2,9 @@ import { BACKGROUND_PRESETS } from '../../constants/brand'
 import { useEditorStore } from '../../store/editorStore'
 
 export function BackgroundLayer() {
-  const { backgroundType, backgroundPresetId, solidColor } = useEditorStore(s => ({
-    backgroundType: s.backgroundType,
-    backgroundPresetId: s.backgroundPresetId,
-    solidColor: s.solidColor,
-  }))
+  const backgroundType = useEditorStore(s => s.backgroundType)
+  const backgroundPresetId = useEditorStore(s => s.backgroundPresetId)
+  const solidColor = useEditorStore(s => s.solidColor)
 
   let background: string
   if (backgroundType === 'solid') {

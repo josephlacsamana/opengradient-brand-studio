@@ -2,10 +2,8 @@ import { useEditorStore } from '../../store/editorStore'
 import { BACKGROUND_PRESETS } from '../../constants/brand'
 
 export function BackgroundControls() {
-  const { backgroundPresetId, setField } = useEditorStore(s => ({
-    backgroundPresetId: s.backgroundPresetId,
-    setField: s.setField,
-  }))
+  const backgroundPresetId = useEditorStore(s => s.backgroundPresetId)
+  const setField = useEditorStore(s => s.setField)
 
   const brandPresets = BACKGROUND_PRESETS.filter(p => p.category === 'brand-gradient')
   const darkPresets = BACKGROUND_PRESETS.filter(p => p.category === 'dark-technical')
