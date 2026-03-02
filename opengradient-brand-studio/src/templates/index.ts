@@ -7,6 +7,13 @@ import { darkTechStatement } from './dark-tech-statement'
 import { socialQuote } from './social-quote'
 import { threadCloser } from './thread-closer'
 import { blogCover } from './blog-cover'
+import { minimalClean } from './minimal-clean'
+import { editorialStatement } from './editorial-statement'
+import { teamSpotlight } from './team-spotlight'
+import { hiringPost } from './hiring-post'
+import { communitySpotlight } from './community-spotlight'
+import { communityTopContributor } from './community-top-contributor'
+import { communityAward } from './community-award'
 
 export const templates: TemplateDefinition[] = [
   brandGradientHero,
@@ -17,6 +24,13 @@ export const templates: TemplateDefinition[] = [
   socialQuote,
   threadCloser,
   blogCover,
+  minimalClean,
+  editorialStatement,
+  teamSpotlight,
+  hiringPost,
+  communitySpotlight,
+  communityTopContributor,
+  communityAward,
 ]
 
 export function getTemplateById(id: string): TemplateDefinition | undefined {
