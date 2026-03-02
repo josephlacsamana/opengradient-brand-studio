@@ -1,4 +1,4 @@
-import type { DecorationConfig } from './template'
+import type { DecorationConfig, CommunitySection } from './template'
 
 export interface EditorState {
   activeTemplateId: string;
@@ -32,6 +32,17 @@ export interface EditorState {
   logoPosition: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
   logoScale: number;
   logoPadding: number;
+
+  communityEnabled: boolean;
+  communitySections: CommunitySection[];
+  communityAvatarSize: number;
+  communityAvatarBorderColor: string;
+  communityAvatarBorderWidth: number;
+  communitySectionTitleColor: string;
+  communitySectionTitleSize: number;
+  communityUsernameColor: string;
+  communityUsernameSize: number;
+  communityColumnsPerRow: number;
 }
 
 export interface EditorActions {
@@ -43,4 +54,11 @@ export interface EditorActions {
     value: DecorationConfig[T][keyof DecorationConfig[T]]
   ) => void;
   reset: () => void;
+  setCommunityMemberImage: (sectionIndex: number, memberIndex: number, imageUrl: string | null) => void;
+  setCommunityMemberUsername: (sectionIndex: number, memberIndex: number, username: string) => void;
+  setCommunityTitle: (sectionIndex: number, title: string) => void;
+  addCommunityMember: (sectionIndex: number) => void;
+  removeCommunityMember: (sectionIndex: number, memberIndex: number) => void;
+  addCommunitySection: () => void;
+  removeCommunitySection: (sectionIndex: number) => void;
 }

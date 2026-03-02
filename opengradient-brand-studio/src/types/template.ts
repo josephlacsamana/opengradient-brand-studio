@@ -7,6 +7,16 @@ export interface DecorationConfig {
   glow: { enabled: boolean; opacity: number; color: string; x: number; y: number };
 }
 
+export interface CommunityMember {
+  imageUrl: string | null;
+  username: string;
+}
+
+export interface CommunitySection {
+  title: string;
+  members: CommunityMember[];
+}
+
 export interface TemplateDefaults {
   headline: string;
   subtitle: string;
@@ -34,6 +44,16 @@ export interface TemplateDefaults {
   logoPosition: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
   logoScale: number;
   logoPadding: number;
+  communityEnabled: boolean;
+  communitySections: CommunitySection[];
+  communityAvatarSize: number;
+  communityAvatarBorderColor: string;
+  communityAvatarBorderWidth: number;
+  communitySectionTitleColor: string;
+  communitySectionTitleSize: number;
+  communityUsernameColor: string;
+  communityUsernameSize: number;
+  communityColumnsPerRow: number;
 }
 
 export interface TemplateDefinition {

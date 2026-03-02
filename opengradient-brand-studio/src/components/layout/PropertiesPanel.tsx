@@ -5,6 +5,7 @@ import { FontSelector } from '../controls/FontSelector'
 import { BackgroundControls } from '../controls/BackgroundControls'
 import { DecorationControls } from '../controls/DecorationControls'
 import { LogoControls } from '../controls/LogoControls'
+import { CommunityControls } from '../controls/CommunityControls'
 import { ExportControls } from '../controls/ExportControls'
 
 interface Props {
@@ -54,6 +55,9 @@ export function PropertiesPanel({ onExport, onExportAll }: Props) {
       </Section>
       <Section title="Logo">
         <LogoControls />
+      </Section>
+      <Section title="Community Grid">
+        <CommunityControls />
       </Section>
       <Section title="Export" defaultOpen>
         <ExportControls onExport={onExport} onExportAll={onExportAll} />

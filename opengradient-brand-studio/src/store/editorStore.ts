@@ -45,4 +45,56 @@ export const useEditorStore = create<EditorState & EditorActions>((set, get) => 
   reset: () => {
     set(getDefaultState())
   },
+
+  setCommunityMemberImage: (sectionIndex, memberIndex, imageUrl) => {
+    const sections = structuredClone(get().communitySections)
+    if (sections[sectionIndex]?.members[memberIndex]) {
+      sections[sectionIndex].members[memberIndex].imageUrl = imageUrl
+      set({ communitySections: sections })
+    }
+  },
+
+  setCommunityMemberUsername: (sectionIndex, memberIndex, username) => {
+    const sections = structuredClone(get().communitySections)
+    if (sections[sectionIndex]?.members[memberIndex]) {
+      sections[sectionIndex].members[memberIndex].username = username
+      set({ communitySections: sections })
+    }
+  },
+
+  setCommunityTitle: (sectionIndex, title) => {
+    const sections = structuredClone(get().communitySections)
+    if (sections[sectionIndex]) {
+      sections[sectionIndex].title = title
+      set({ communitySections: sections })
+    }
+  },
+
+  addCommunityMember: (sectionIndex) => {
+    const sections = structuredClone(get().communitySections)
+    if (sections[sectionIndex]) {
+      sections[sectionIndex].members.push({ imageUrl: null, username: '@username' })
+      set({ communitySections: sections })
+    }
+  },
+
+  removeCommunityMember: (sectionIndex, memberIndex) => {
+    const sections = structuredClone(get().communitySections)
+    if (sections[sectionIndex]?.members[memberIndex]) {
+      sections[sectionIndex].members.splice(memberIndex, 1)
+      set({ communitySections: sections })
+    }
+  },
+
+  addCommunitySection: () => {
+    const sections = structuredClone(get().communitySections)
+    sections.push({ title: 'New Section', members: [{ imageUrl: null, username: '@username' }] })
+    set({ communitySections: sections })
+  },
+
+  removeCommunitySection: (sectionIndex) => {
+    const sections = structuredClone(get().communitySections)
+    sections.splice(sectionIndex, 1)
+    set({ communitySections: sections })
+  },
 }))

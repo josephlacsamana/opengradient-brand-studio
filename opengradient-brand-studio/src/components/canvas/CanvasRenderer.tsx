@@ -4,6 +4,7 @@ import { BackgroundLayer } from './BackgroundLayer'
 import { DecorativeLayer } from './DecorativeLayer'
 import { TextLayer } from './TextLayer'
 import { LogoLayer } from './LogoLayer'
+import { CommunityGridLayer } from './CommunityGridLayer'
 
 export const CanvasRenderer = forwardRef<HTMLDivElement>(function CanvasRenderer(_, ref) {
   const { customWidth: width, customHeight: height } = useExportStore()
@@ -22,6 +23,7 @@ export const CanvasRenderer = forwardRef<HTMLDivElement>(function CanvasRenderer
       <BackgroundLayer />
       <DecorativeLayer />
       <TextLayer />
+      <CommunityGridLayer />
       <LogoLayer />
     </div>
   )

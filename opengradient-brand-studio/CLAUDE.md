@@ -159,13 +159,14 @@ Reason: `html-to-image` serializes the DOM to SVG foreignObject. Tailwind classe
 
 ### Canvas Layer Stack
 
-The canvas is composed of four absolutely-positioned layers inside `CanvasRenderer`:
+The canvas is composed of five absolutely-positioned layers inside `CanvasRenderer`:
 
 ```
-z-index: 1   BackgroundLayer    — gradient or solid dark background
-z-index: 2   DecorativeLayer    — particles, cubes, lines, nodes, streaks, glow
-z-index: 3   TextLayer          — headline + subtitle, positioned per alignment
-z-index: 4   LogoLayer          — logo SVG in chosen corner with padding
+z-index: 1   BackgroundLayer       — gradient or solid dark background
+z-index: 2   DecorativeLayer       — particles, cubes, lines, nodes, streaks, glow
+z-index: 3   TextLayer             — headline + subtitle, positioned per alignment
+z-index: 3   CommunityGridLayer    — PFP grid with sections (when communityEnabled)
+z-index: 4   LogoLayer             — logo SVG in chosen corner with padding
 ```
 
 Each layer: `position: absolute; inset: 0;` within the container.
@@ -178,10 +179,23 @@ All decorative elements MUST be rendered as SVG or CSS — never HTML5 `<canvas>
 
 Templates are pure TypeScript objects conforming to `TemplateDefinition`. They define default values for every editor state field. Adding a new template requires only creating a data object and registering it — zero React code needed.
 
+### Zustand Selector Rules
+
+**CRITICAL:** Never use object-returning selectors with Zustand v5. They cause infinite re-renders because `Object.is({}, {})` is always `false` with `useSyncExternalStore`.
+
+```typescript
+// BAD — infinite re-render loop
+const { a, b } = useEditorStore(s => ({ a: s.a, b: s.b }))
+
+// GOOD — stable primitive references
+const a = useEditorStore(s => s.a)
+const b = useEditorStore(s => s.b)
+```
+
 ### State Management
 
 Three Zustand stores:
-- `editorStore` — All visual state (text, background, decorations, logo, active template)
+- `editorStore` — All visual state (text, background, decorations, logo, community grid, active template)
 - `exportStore` — Export dimensions, size preset selection, exporting flag
 - `historyStore` — Undo/redo stack with debounced snapshots
 
@@ -248,7 +262,14 @@ opengradient-brand-studio/
 │   │   ├── dark-tech-statement.ts
 │   │   ├── social-quote.ts
 │   │   ├── thread-closer.ts
-│   │   └── blog-cover.ts
+│   │   ├── blog-cover.ts
+│   │   ├── minimal-clean.ts
+│   │   ├── editorial-statement.ts
+│   │   ├── team-spotlight.ts
+│   │   ├── hiring-post.ts
+│   │   ├── community-spotlight.ts
+│   │   ├── community-top-contributor.ts
+│   │   └── community-award.ts
 │   ├── store/
 │   │   ├── editorStore.ts
 │   │   ├── exportStore.ts
@@ -275,7 +296,8 @@ opengradient-brand-studio/
 │   │   │   ├── BackgroundLayer.tsx
 │   │   │   ├── TextLayer.tsx
 │   │   │   ├── LogoLayer.tsx
-│   │   │   └── DecorativeLayer.tsx
+│   │   │   ├── DecorativeLayer.tsx
+│   │   │   └── CommunityGridLayer.tsx
 │   │   ├── decorations/
 │   │   │   ├── ParticleField.tsx
 │   │   │   ├── GeometricCubes.tsx
@@ -290,6 +312,7 @@ opengradient-brand-studio/
 │   │   │   ├── BackgroundControls.tsx
 │   │   │   ├── DecorationControls.tsx
 │   │   │   ├── LogoControls.tsx
+│   │   │   ├── CommunityControls.tsx
 │   │   │   └── ExportControls.tsx
 │   │   └── ui/
 │   │       ├── Button.tsx
@@ -306,61 +329,37 @@ opengradient-brand-studio/
 
 ## Templates
 
-### 1. Brand Gradient Hero
-- **BG:** `brand-gradient-vertical` (180deg, #0E4B5B → #24BCE3 → #E9F8FC)
-- **Text:** Large centered headline (white), subtitle below (white, lighter weight)
-- **Logo:** Top center, white lockup horizontal
-- **Decorations:** None or subtle glow
-- **Use case:** Major announcements, social headers
+### Core Templates
+- [x] **Brand Gradient Hero** — Large centered headline on brand teal gradient. Use: announcements, social headers.
+- [x] **Brand Gradient Split** — Left-aligned text on diagonal gradient. Use: banners, LinkedIn posts.
+- [x] **Dark Tech Announcement** — Centered text on dark BG with particles + glow. Use: product launches.
+- [x] **Dark Tech Feature** — Center headline on radial teal glow with cubes. Use: feature highlights.
+- [x] **Dark Tech Statement** — Bold two-line statement on dark teal gradient. Use: taglines.
+- [x] **Social Quote** — Quote card on dark navy with subtle streaks. Use: testimonials.
+- [x] **Thread Closer** — "End of thread." slide with watermark logo. Use: thread endings.
+- [x] **Blog Cover** — Headline on soft brand gradient with connected nodes. Use: article covers.
 
-### 2. Brand Gradient Split
-- **BG:** `brand-gradient-diagonal` (135deg)
-- **Text:** Left-aligned headline, left-aligned subtitle
-- **Logo:** Top left, white lockup horizontal
-- **Decorations:** None
-- **Use case:** Banner images, LinkedIn posts
+### Minimal / Editorial Templates
+- [x] **Minimal Clean** — Ultra-clean typography, soft gradient, DM Sans, generous whitespace.
+- [x] **Editorial Statement** — Magazine-style left-aligned Playfair Display on dark background.
 
-### 3. Dark Tech Announcement
-- **BG:** `dark-deepest` (#0A0F19)
-- **Text:** Large centered headline (white), subtitle (#A7E4F4)
-- **Logo:** Top center, cyan lockup horizontal
-- **Decorations:** Particle field + glow orb
-- **Use case:** Product announcements, feature launches
+### Team / People Templates
+- [x] **Team Spotlight** — Team member name + role/bio on teal glow, Sora font.
+- [x] **Hiring Post** — "We're Hiring!" on brand diagonal gradient with connected nodes.
 
-### 4. Dark Tech Feature
-- **BG:** `dark-teal-glow` (radial)
-- **Text:** Center headline (white)
-- **Logo:** Top left, cyan lockup horizontal
-- **Decorations:** Geometric cubes + radial lines
-- **Use case:** Feature highlights, technical content
+### Community Templates (with PFP Grid)
+- [x] **Weekly Yappers** — Multi-section grid (Top Yappers, Best Art, Top Educator) with 14 avatar slots.
+- [x] **Top 6 Members** — Single section, 3-column grid, brand gradient, 6 large avatar slots.
+- [x] **Top 4 Members** — Single section, 4-column grid, dark BG with particles, 4 large avatar slots.
 
-### 5. Dark Tech Statement
-- **BG:** `dark-gradient-teal` (180deg, #0E4B5B → #041317)
-- **Text:** Two-line bold statement (white), e.g. "Private data.\nPublic proof."
-- **Logo:** Top left, cyan symbol
-- **Decorations:** Radial lines or horizontal streaks
-- **Use case:** Bold statements, taglines
+### Community Grid System
 
-### 6. Social Quote
-- **BG:** `dark-navy` (#141E32)
-- **Text:** Large quote text (white), attribution subtitle (#A7E4F4)
-- **Logo:** Bottom right, cyan symbol
-- **Decorations:** Horizontal streaks (subtle)
-- **Use case:** Quote cards, testimonials
-
-### 7. Thread Closer
-- **BG:** `dark-deepest` (#0A0F19)
-- **Text:** "End of thread." large center, "THANKS FOR READING" small caps below
-- **Logo:** Top center, white lockup horizontal (watermark opacity)
-- **Decorations:** Horizontal streaks
-- **Use case:** Thread ending slides
-
-### 8. Blog Cover
-- **BG:** `brand-gradient-soft` (180deg, #167188 → #50C9E9 → #BDEBF7 → #FFFFFF)
-- **Text:** Large headline (white), subtitle below (#E9F8FC)
-- **Logo:** Top left, white lockup horizontal
-- **Decorations:** Connected nodes (subtle)
-- **Use case:** Blog headers, article covers
+Community templates use `communityEnabled: true` and render a `CommunityGridLayer` with:
+- **Sections** — Each section has a title and array of member slots
+- **Member slots** — Circular PFP frame + username label
+- **Image upload** — Users click to upload profile pictures (stored as data URLs for export)
+- **Configurable** — Avatar size, border color/width, columns per row, title/username colors & sizes
+- **Dynamic** — Add/remove members and sections via the properties panel
 
 ---
 
