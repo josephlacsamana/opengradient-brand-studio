@@ -411,3 +411,45 @@ npm run preview  # Preview production build
 - **Zustand selectors** for store access — never subscribe to entire store
 - **Google Fonts** via single batched URL — not individual font requests
 - **Export always at `pixelRatio: 2`** for retina output
+
+---
+
+## Deployment
+
+### GitHub Repo
+- **URL:** https://github.com/josephlacsamana/opengradient-brand-studio
+- **Branch:** `main`
+- **Git repo is inside the project folder** (`opengradient-brand-studio/.git`)
+
+### Vercel
+- **Live URL:** opengradient-brand-studio-git-main-josephlacsamanas-projects.vercel.app
+- **Framework Preset:** Vite
+- **Root Directory:** (blank/empty) — files are at repo root
+- **Build Command:** `npm run build` (uses `vite build`, NOT `tsc -b && vite build` — 373 TS errors exist)
+- **Install Command:** `npm install`
+- **Output Directory:** `dist`
+- Auto-deploys on push to `main`
+
+### Git Workflow (from VS Code terminal)
+```bash
+git add -A
+git commit -m "your message here"
+git push origin main
+```
+Vercel will auto-deploy after push. Check deployment status at vercel.com dashboard.
+
+---
+
+## Known Issues & Fixes Log
+
+- [x] **Zustand v5 infinite re-render** — Object-returning selectors cause React error #185. Fixed by using individual selectors.
+- [x] **Vercel 404 on deploy** — Multiple rounds: added vercel.json, fixed build command, set root directory.
+- [x] **Git repo in wrong directory** — Was in `C:\Users\Joseph\`, moved `.git` into project folder.
+- [ ] **Vercel Root Directory needs clearing** — After moving .git, the Root Directory setting must be set to blank (was `opengradient-brand-studio`). Do this in Vercel Settings > General.
+- [ ] **373 TypeScript errors** — `tsc -b` fails. Build uses `vite build` directly to skip type checking. Should fix TS errors eventually.
+
+---
+
+## UI Enhancements Log
+
+- [x] **Brand color swatches for text colors** — Headline and Subtitle color pickers now have 10 clickable brand palette presets (White, Lightest Cyan, Light Cyan, Logo Cyan, Primary, Dark Teal, Light Gray, Dark Navy, Deepest Dark, Black) above the full color picker. Defined in `TextControls.tsx` as `TEXT_COLOR_PRESETS`.

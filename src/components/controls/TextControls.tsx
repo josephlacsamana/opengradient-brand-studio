@@ -1,6 +1,39 @@
 import { useEditorStore } from '../../store/editorStore'
 import { AlignLeft, AlignCenter, AlignRight } from 'lucide-react'
 
+const TEXT_COLOR_PRESETS = [
+  { color: '#FFFFFF', label: 'White' },
+  { color: '#E9F8FC', label: 'Lightest Cyan' },
+  { color: '#A7E4F4', label: 'Light Cyan' },
+  { color: '#40D1DB', label: 'Logo Cyan' },
+  { color: '#24BCE3', label: 'Primary' },
+  { color: '#0E4B5B', label: 'Dark Teal' },
+  { color: '#BFC8DC', label: 'Light Gray' },
+  { color: '#141E32', label: 'Dark Navy' },
+  { color: '#0A0F19', label: 'Deepest Dark' },
+  { color: '#000000', label: 'Black' },
+]
+
+function ColorSwatches({ value, onChange }: { value: string; onChange: (c: string) => void }) {
+  return (
+    <div className="flex flex-wrap gap-1.5 mb-1.5">
+      {TEXT_COLOR_PRESETS.map(({ color, label }) => (
+        <button
+          key={color}
+          title={label}
+          onClick={() => onChange(color)}
+          className="relative w-6 h-6 rounded-full border-2 transition-transform hover:scale-110"
+          style={{
+            backgroundColor: color,
+            borderColor: value === color ? '#24BCE3' : 'rgba(255,255,255,0.15)',
+            boxShadow: value === color ? '0 0 0 2px rgba(36,188,227,0.4)' : 'none',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 export function TextControls() {
   const store = useEditorStore()
 
@@ -109,25 +142,32 @@ export function TextControls() {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <label className="block text-xs text-brand-dark-100 mb-1">Headline Color</label>
-          <input
-            type="color"
-            value={store.headlineColor}
-            onChange={e => store.setField('headlineColor', e.target.value)}
-            className="w-full h-8 rounded cursor-pointer bg-transparent"
-          />
-        </div>
-        <div>
-          <label className="block text-xs text-brand-dark-100 mb-1">Subtitle Color</label>
-          <input
-            type="color"
-            value={store.subtitleColor}
-            onChange={e => store.setField('subtitleColor', e.target.value)}
-            className="w-full h-8 rounded cursor-pointer bg-transparent"
-          />
-        </div>
+      <div>
+        <label className="block text-xs text-brand-dark-100 mb-1">Headline Color</label>
+        <ColorSwatches
+          value={store.headlineColor}
+          onChange={c => store.setField('headlineColor', c)}
+        />
+        <input
+          type="color"
+          value={store.headlineColor}
+          onChange={e => store.setField('headlineColor', e.target.value)}
+          className="w-full h-7 rounded cursor-pointer bg-transparent"
+        />
+      </div>
+
+      <div>
+        <label className="block text-xs text-brand-dark-100 mb-1">Subtitle Color</label>
+        <ColorSwatches
+          value={store.subtitleColor}
+          onChange={c => store.setField('subtitleColor', c)}
+        />
+        <input
+          type="color"
+          value={store.subtitleColor}
+          onChange={e => store.setField('subtitleColor', e.target.value)}
+          className="w-full h-7 rounded cursor-pointer bg-transparent"
+        />
       </div>
     </div>
   )
