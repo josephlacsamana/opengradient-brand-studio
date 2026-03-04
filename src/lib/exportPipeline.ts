@@ -16,14 +16,23 @@ export async function exportCanvasToPng(
 
   await waitForFonts()
 
+  // Clone the canvas and reset its transform/dimensions
   const clone = canvasElement.cloneNode(true) as HTMLElement
   clone.style.transform = 'none'
   clone.style.width = `${targetWidth}px`
   clone.style.height = `${targetHeight}px`
-  clone.style.position = 'fixed'
-  clone.style.left = '-99999px'
-  clone.style.top = '0'
-  document.body.appendChild(clone)
+  clone.style.position = 'relative'
+
+  // Use a wrapper div for off-screen positioning so the clone itself
+  // stays position:relative (matching CanvasRenderer). This prevents
+  // html-to-image from mis-positioning content due to position:fixed.
+  const offscreen = document.createElement('div')
+  offscreen.style.position = 'fixed'
+  offscreen.style.left = '-99999px'
+  offscreen.style.top = '0'
+  offscreen.style.overflow = 'visible'
+  offscreen.appendChild(clone)
+  document.body.appendChild(offscreen)
 
   const fontCSS = await generateFontFaceCSS()
   if (fontCSS) {
@@ -45,7 +54,7 @@ export async function exportCanvasToPng(
     link.href = dataUrl
     link.click()
   } finally {
-    document.body.removeChild(clone)
+    document.body.removeChild(offscreen)
   }
 }
 

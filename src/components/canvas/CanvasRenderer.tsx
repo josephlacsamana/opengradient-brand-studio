@@ -8,7 +8,8 @@ import { LogoLayer } from './LogoLayer'
 import { CommunityGridLayer } from './CommunityGridLayer'
 
 export const CanvasRenderer = forwardRef<HTMLDivElement>(function CanvasRenderer(_, ref) {
-  const { customWidth: width, customHeight: height } = useExportStore()
+  const width = useExportStore(s => s.customWidth)
+  const height = useExportStore(s => s.customHeight)
   const setFocusedSection = useUIStore(s => s.setFocusedSection)
 
   const handleLayerClick = (section: PanelSectionId) => {

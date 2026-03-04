@@ -9,7 +9,8 @@ interface CanvasWrapperProps {
 
 export function CanvasWrapper({ canvasRef }: CanvasWrapperProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { customWidth: width, customHeight: height } = useExportStore()
+  const width = useExportStore(s => s.customWidth)
+  const height = useExportStore(s => s.customHeight)
   const scale = useCanvasScale(width, height, containerRef)
 
   return (

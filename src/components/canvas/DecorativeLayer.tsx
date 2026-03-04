@@ -13,7 +13,8 @@ interface DecorativeLayerProps {
 
 export function DecorativeLayer({ onLayerClick }: DecorativeLayerProps) {
   const decorations = useEditorStore(s => s.decorations)
-  const { customWidth: width, customHeight: height } = useExportStore()
+  const width = useExportStore(s => s.customWidth)
+  const height = useExportStore(s => s.customHeight)
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation()
