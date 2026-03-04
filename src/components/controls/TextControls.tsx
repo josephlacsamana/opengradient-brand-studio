@@ -1,38 +1,6 @@
 import { useEditorStore } from '../../store/editorStore'
 import { AlignLeft, AlignCenter, AlignRight } from 'lucide-react'
-
-const TEXT_COLOR_PRESETS = [
-  // Official brand palette (4 core colors)
-  { color: '#FFFFFF', label: 'White' },
-  { color: '#E9F8FC', label: 'Clear Skies' },
-  { color: '#24BCE3', label: 'Caribbean Blue' },
-  { color: '#0E4B5B', label: 'Teal Dark Blue' },
-  // Extended useful colors
-  { color: '#A7E4F4', label: 'Light Cyan' },
-  { color: '#40D1DB', label: 'Logo Cyan' },
-  { color: '#141E32', label: 'Dark Navy' },
-  { color: '#000000', label: 'Black' },
-]
-
-function ColorSwatches({ value, onChange }: { value: string; onChange: (c: string) => void }) {
-  return (
-    <div className="flex flex-wrap gap-1.5 mb-1.5">
-      {TEXT_COLOR_PRESETS.map(({ color, label }) => (
-        <button
-          key={color}
-          title={label}
-          onClick={() => onChange(color)}
-          className="relative w-6 h-6 rounded-full border-2 transition-transform hover:scale-110"
-          style={{
-            backgroundColor: color,
-            borderColor: value === color ? '#24BCE3' : 'rgba(255,255,255,0.15)',
-            boxShadow: value === color ? '0 0 0 2px rgba(36,188,227,0.4)' : 'none',
-          }}
-        />
-      ))}
-    </div>
-  )
-}
+import { ColorSwatches } from '../ui/ColorSwatches'
 
 export function TextControls() {
   const store = useEditorStore()

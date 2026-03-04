@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { Plus, Trash2, Upload, X } from 'lucide-react'
 import { useEditorStore } from '../../store/editorStore'
+import { ColorSwatches } from '../ui/ColorSwatches'
 
 export function CommunityControls() {
   const communityEnabled = useEditorStore(s => s.communityEnabled)
@@ -79,50 +80,60 @@ export function CommunityControls() {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <label className="block text-xs text-brand-dark-100 mb-1">Border Color</label>
-          <input
-            type="color"
-            value={borderColor}
-            onChange={e => setField('communityAvatarBorderColor', e.target.value)}
-            className="w-full h-8 rounded cursor-pointer bg-transparent"
-          />
-        </div>
-        <div>
-          <label className="block text-xs text-brand-dark-100 mb-1">
-            Border: {borderWidth}px
-          </label>
-          <input
-            type="range"
-            min={0}
-            max={6}
-            value={borderWidth}
-            onChange={e => setField('communityAvatarBorderWidth', Number(e.target.value))}
-            className="w-full accent-brand-cyan"
-          />
-        </div>
+      <div>
+        <label className="block text-xs text-brand-dark-100 mb-1">Border Color</label>
+        <ColorSwatches
+          value={borderColor}
+          onChange={c => setField('communityAvatarBorderColor', c)}
+        />
+        <input
+          type="color"
+          value={borderColor}
+          onChange={e => setField('communityAvatarBorderColor', e.target.value)}
+          className="w-full h-7 rounded cursor-pointer bg-transparent"
+        />
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <label className="block text-xs text-brand-dark-100 mb-1">Title Color</label>
-          <input
-            type="color"
-            value={sectionTitleColor}
-            onChange={e => setField('communitySectionTitleColor', e.target.value)}
-            className="w-full h-8 rounded cursor-pointer bg-transparent"
-          />
-        </div>
-        <div>
-          <label className="block text-xs text-brand-dark-100 mb-1">Username Color</label>
-          <input
-            type="color"
-            value={usernameColor}
-            onChange={e => setField('communityUsernameColor', e.target.value)}
-            className="w-full h-8 rounded cursor-pointer bg-transparent"
-          />
-        </div>
+      <div>
+        <label className="block text-xs text-brand-dark-100 mb-1">
+          Border: {borderWidth}px
+        </label>
+        <input
+          type="range"
+          min={0}
+          max={6}
+          value={borderWidth}
+          onChange={e => setField('communityAvatarBorderWidth', Number(e.target.value))}
+          className="w-full accent-brand-cyan"
+        />
+      </div>
+
+      <div>
+        <label className="block text-xs text-brand-dark-100 mb-1">Title Color</label>
+        <ColorSwatches
+          value={sectionTitleColor}
+          onChange={c => setField('communitySectionTitleColor', c)}
+        />
+        <input
+          type="color"
+          value={sectionTitleColor}
+          onChange={e => setField('communitySectionTitleColor', e.target.value)}
+          className="w-full h-7 rounded cursor-pointer bg-transparent"
+        />
+      </div>
+
+      <div>
+        <label className="block text-xs text-brand-dark-100 mb-1">Username Color</label>
+        <ColorSwatches
+          value={usernameColor}
+          onChange={c => setField('communityUsernameColor', c)}
+        />
+        <input
+          type="color"
+          value={usernameColor}
+          onChange={e => setField('communityUsernameColor', e.target.value)}
+          className="w-full h-7 rounded cursor-pointer bg-transparent"
+        />
       </div>
 
       <div className="grid grid-cols-2 gap-2">

@@ -36,9 +36,9 @@ export const communityAward: TemplateDefinition = {
     logoEnabled: true,
     logoVariant: 'lockup-horizontal',
     logoColor: 'cyan',
-    logoPosition: 'top-center',
-    logoScale: 0.6,
-    logoPadding: 25,
+    logoPosition: 'bottom-center',
+    logoScale: 0.5,
+    logoPadding: 30,
     communityEnabled: true,
     communitySections: [
       {

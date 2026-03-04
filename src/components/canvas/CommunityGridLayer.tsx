@@ -11,51 +11,61 @@ export function CommunityGridLayer() {
   const usernameColor = useEditorStore(s => s.communityUsernameColor)
   const usernameSize = useEditorStore(s => s.communityUsernameSize)
   const columnsPerRow = useEditorStore(s => s.communityColumnsPerRow)
+  const headlineFontSize = useEditorStore(s => s.headlineFontSize)
+  const textPaddingY = useEditorStore(s => s.textPaddingY)
+  const textPaddingX = useEditorStore(s => s.textPaddingX)
 
   if (!communityEnabled || communitySections.length === 0) return null
+
+  // Calculate top offset to clear the headline area
+  const headlineAreaHeight = textPaddingY + headlineFontSize + 20
 
   return (
     <div
       style={{
         position: 'absolute',
-        inset: 0,
+        top: `${headlineAreaHeight}px`,
+        left: 0,
+        right: 0,
+        bottom: 0,
         zIndex: 3,
         display: 'flex',
         flexDirection: 'column',
-        padding: '80px 60px 40px',
+        justifyContent: 'center',
+        padding: `10px ${textPaddingX}px 40px`,
         pointerEvents: 'none',
-        gap: '16px',
+        gap: '12px',
       }}
     >
-      {/* Sections container - wraps sections in a flex layout */}
+      {/* Sections container */}
       <div
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          gap: '16px',
-          flex: 1,
-          alignContent: 'flex-start',
+          gap: '12px',
+          alignContent: 'center',
+          justifyContent: 'center',
         }}
       >
         {communitySections.map((section, sIndex) => (
           <div
             key={sIndex}
             style={{
-              flex: communitySections.length === 1 ? '1 1 100%' : '1 1 calc(50% - 8px)',
-              minWidth: '300px',
+              flex: communitySections.length === 1 ? '1 1 100%' : '1 1 calc(50% - 6px)',
+              minWidth: '280px',
               background: 'rgba(255,255,255,0.05)',
               borderRadius: '16px',
-              padding: '20px',
+              padding: '16px 20px',
             }}
           >
             {/* Section title */}
             <div
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: `${sectionTitleSize}px`,
                 fontWeight: 700,
                 color: sectionTitleColor,
-                marginBottom: '16px',
+                marginBottom: '12px',
               }}
             >
               {section.title}
@@ -66,7 +76,8 @@ export function CommunityGridLayer() {
               style={{
                 display: 'grid',
                 gridTemplateColumns: `repeat(${columnsPerRow}, 1fr)`,
-                gap: '12px',
+                gap: '10px',
+                justifyItems: 'center',
               }}
             >
               {section.members.map((member, mIndex) => (
@@ -76,7 +87,7 @@ export function CommunityGridLayer() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '6px',
+                    gap: '4px',
                   }}
                 >
                   {/* Avatar circle */}
@@ -111,7 +122,7 @@ export function CommunityGridLayer() {
                           justifyContent: 'center',
                           color: borderColor,
                           fontSize: `${avatarSize * 0.35}px`,
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'Geist', sans-serif",
                           opacity: 0.5,
                         }}
                       >
@@ -123,7 +134,7 @@ export function CommunityGridLayer() {
                   {/* Username */}
                   <div
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'Geist', sans-serif",
                       fontSize: `${usernameSize}px`,
                       fontWeight: 500,
                       color: usernameColor,
