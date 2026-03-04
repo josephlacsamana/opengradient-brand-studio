@@ -8,6 +8,7 @@ const DECORATION_LABELS: Record<keyof DecorationConfig, string> = {
   streaks: 'Horizontal Streaks',
   nodes: 'Connected Nodes',
   glow: 'Glow Orb',
+  isometricGrid: 'Isometric Grid',
 }
 
 export function DecorationControls() {

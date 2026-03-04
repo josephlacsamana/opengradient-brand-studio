@@ -6,6 +6,7 @@ export type PanelSectionId =
   | 'fonts'
   | 'background'
   | 'decorations'
+  | 'hero-image'
   | 'logo'
   | 'community-grid'
   | 'export'

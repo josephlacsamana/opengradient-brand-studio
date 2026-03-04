@@ -43,6 +43,12 @@ export interface EditorState {
   communityUsernameColor: string;
   communityUsernameSize: number;
   communityColumnsPerRow: number;
+  imageEnabled: boolean;
+  imageSrc: string | null;
+  imageX: number;
+  imageY: number;
+  imageScale: number;
+  imageOpacity: number;
 }
 
 export interface Design {

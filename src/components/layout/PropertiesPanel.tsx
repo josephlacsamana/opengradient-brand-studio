@@ -4,6 +4,7 @@ import { TextControls } from '../controls/TextControls'
 import { FontSelector } from '../controls/FontSelector'
 import { BackgroundControls } from '../controls/BackgroundControls'
 import { DecorationControls } from '../controls/DecorationControls'
+import { ImageControls } from '../controls/ImageControls'
 import { LogoControls } from '../controls/LogoControls'
 import { CommunityControls } from '../controls/CommunityControls'
 import { ExportControls } from '../controls/ExportControls'
@@ -68,6 +69,9 @@ export function PropertiesPanel({ onExport, onExportAll }: Props) {
       </Section>
       <Section sectionId="decorations" title="Decorations">
         <DecorationControls />
+      </Section>
+      <Section sectionId="hero-image" title="Hero Image">
+        <ImageControls />
       </Section>
       <Section sectionId="logo" title="Logo">
         <LogoControls />

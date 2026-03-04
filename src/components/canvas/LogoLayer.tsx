@@ -23,7 +23,7 @@ export function LogoLayer({ onLayerClick }: LogoLayerProps) {
 
   const posStyle: React.CSSProperties = {
     position: 'absolute',
-    zIndex: 4,
+    zIndex: 5,
   }
 
   if (logoPosition.includes('top')) posStyle.top = `${logoPadding}px`

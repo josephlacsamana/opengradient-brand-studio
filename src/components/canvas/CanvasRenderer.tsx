@@ -5,6 +5,7 @@ import { BackgroundLayer } from './BackgroundLayer'
 import { DecorativeLayer } from './DecorativeLayer'
 import { TextLayer } from './TextLayer'
 import { LogoLayer } from './LogoLayer'
+import { ImageLayer } from './ImageLayer'
 import { CommunityGridLayer } from './CommunityGridLayer'
 
 export const CanvasRenderer = forwardRef<HTMLDivElement>(function CanvasRenderer(_, ref) {
@@ -29,6 +30,7 @@ export const CanvasRenderer = forwardRef<HTMLDivElement>(function CanvasRenderer
     >
       <BackgroundLayer onLayerClick={() => handleLayerClick('background')} />
       <DecorativeLayer onLayerClick={() => handleLayerClick('decorations')} />
+      <ImageLayer onLayerClick={() => handleLayerClick('hero-image')} />
       <TextLayer onLayerClick={() => handleLayerClick('text')} />
       <CommunityGridLayer onLayerClick={() => handleLayerClick('community-grid')} />
       <LogoLayer onLayerClick={() => handleLayerClick('logo')} />

@@ -22,7 +22,7 @@ export const brandGradientSplit: TemplateDefinition = {
     textPaddingY: 60,
     backgroundType: 'gradient',
     backgroundPresetId: 'brand-gradient-diagonal',
-    gradientColors: ['#0E4B5B', '#167188', '#A7E4F4', '#E9F8FC'],
+    gradientColors: ['#0E4B5B', '#167188', '#1D96B6', '#24BCE3'],
     gradientAngle: 135,
     solidColor: '#0E4B5B',
     decorations: {
@@ -32,6 +32,7 @@ export const brandGradientSplit: TemplateDefinition = {
       streaks: { enabled: false, opacity: 0.3, count: 8, color: '#24BCE3' },
       nodes: { enabled: false, opacity: 0.3, nodeCount: 12, color: '#40D1DB' },
       glow: { enabled: false, opacity: 0.3, color: '#24BCE3', x: 70, y: 50 },
+      isometricGrid: { enabled: false, opacity: 0.3, color: '#40D1DB' },
     },
     logoEnabled: true,
     logoVariant: 'lockup-horizontal',
@@ -49,5 +50,11 @@ export const brandGradientSplit: TemplateDefinition = {
     communityUsernameColor: '#A7E4F4',
     communityUsernameSize: 14,
     communityColumnsPerRow: 4,
+    imageEnabled: false,
+    imageSrc: null,
+    imageX: 50,
+    imageY: 50,
+    imageScale: 0.5,
+    imageOpacity: 1,
   },
 }

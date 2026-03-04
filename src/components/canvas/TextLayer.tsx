@@ -29,7 +29,7 @@ export function TextLayer({ onLayerClick }: TextLayerProps) {
       style={{
         position: 'absolute',
         inset: 0,
-        zIndex: 3,
+        zIndex: 4,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: justifyMap[textVerticalPosition],

@@ -5,6 +5,7 @@ export interface DecorationConfig {
   streaks: { enabled: boolean; opacity: number; count: number; color: string };
   nodes: { enabled: boolean; opacity: number; nodeCount: number; color: string };
   glow: { enabled: boolean; opacity: number; color: string; x: number; y: number };
+  isometricGrid: { enabled: boolean; opacity: number; color: string };
 }
 
 export interface CommunityMember {
@@ -54,6 +55,12 @@ export interface TemplateDefaults {
   communityUsernameColor: string;
   communityUsernameSize: number;
   communityColumnsPerRow: number;
+  imageEnabled: boolean;
+  imageSrc: string | null;
+  imageX: number;
+  imageY: number;
+  imageScale: number;
+  imageOpacity: number;
 }
 
 export interface TemplateDefinition {

@@ -6,7 +6,7 @@ export const communitySpotlight: TemplateDefinition = {
   description: 'Multi-section community highlights with PFP grid',
   category: 'dark-technical',
   defaults: {
-    headline: 'Weekly Yapper Highlights',
+    headline: 'Weekly Top Contributors\nHighlights',
     subtitle: '',
     headlineFontFamily: 'Geist',
     headlineFontSize: 56,
@@ -32,6 +32,7 @@ export const communitySpotlight: TemplateDefinition = {
       streaks: { enabled: false, opacity: 0.3, count: 8, color: '#24BCE3' },
       nodes: { enabled: false, opacity: 0.3, nodeCount: 12, color: '#40D1DB' },
       glow: { enabled: false, opacity: 0.4, color: '#24BCE3', x: 50, y: 50 },
+      isometricGrid: { enabled: false, opacity: 0.3, color: '#40D1DB' },
     },
     logoEnabled: true,
     logoVariant: 'lockup-horizontal',
@@ -42,7 +43,7 @@ export const communitySpotlight: TemplateDefinition = {
     communityEnabled: true,
     communitySections: [
       {
-        title: 'Top Yappers',
+        title: 'New OGs',
         members: [
           { imageUrl: null, username: '@member1' },
           { imageUrl: null, username: '@member2' },
@@ -55,19 +56,16 @@ export const communitySpotlight: TemplateDefinition = {
         ],
       },
       {
-        title: 'Best Art',
-        members: [
-          { imageUrl: null, username: '@artist1' },
-          { imageUrl: null, username: '@artist2' },
-          { imageUrl: null, username: '@artist3' },
-        ],
-      },
-      {
-        title: 'Top Educator',
+        title: 'Most Active OG',
         members: [
           { imageUrl: null, username: '@educator1' },
           { imageUrl: null, username: '@educator2' },
           { imageUrl: null, username: '@educator3' },
+          { imageUrl: null, username: '@educator4' },
+          { imageUrl: null, username: '@educator5' },
+          { imageUrl: null, username: '@educator6' },
+          { imageUrl: null, username: '@educator7' },
+          { imageUrl: null, username: '@educator8' },
         ],
       },
     ],
@@ -79,5 +77,11 @@ export const communitySpotlight: TemplateDefinition = {
     communityUsernameColor: '#A7E4F4',
     communityUsernameSize: 13,
     communityColumnsPerRow: 4,
+    imageEnabled: false,
+    imageSrc: null,
+    imageX: 50,
+    imageY: 50,
+    imageScale: 0.5,
+    imageOpacity: 1,
   },
 }

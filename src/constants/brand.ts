@@ -40,27 +40,27 @@ export interface BackgroundPreset {
 }
 
 export const BACKGROUND_PRESETS: BackgroundPreset[] = [
-  // Official Brand Gradients (from brand guide)
+  // Brand Gradients — all stay dark/medium enough for white text
   {
     id: 'brand-header-gradient',
     label: 'Header Gradient',
     category: 'brand-gradient',
     type: 'linear',
-    value: 'linear-gradient(180deg, #0E4B5B 0%, #0E4B5B 25%, #24BCE3 60%, #E9F8FC 100%)',
+    value: 'linear-gradient(180deg, #0E4B5B 0%, #0E4B5B 30%, #167188 60%, #24BCE3 100%)',
   },
   {
     id: 'brand-footer-gradient',
     label: 'Footer Gradient',
     category: 'brand-gradient',
     type: 'radial',
-    value: 'radial-gradient(ellipse at 50% 100%, #0E4B5B 0%, #24BCE3 35%, #E9F8FC 65%, #E9F8FC 100%)',
+    value: 'radial-gradient(ellipse at 50% 100%, #0E4B5B 0%, #167188 40%, #24BCE3 80%)',
   },
   {
     id: 'brand-section-gradient',
     label: 'Section Gradient',
     category: 'brand-gradient',
     type: 'linear',
-    value: 'linear-gradient(135deg, #0E4B5B 0%, #24BCE3 50%, #E9F8FC 100%)',
+    value: 'linear-gradient(135deg, #0E4B5B 0%, #167188 40%, #24BCE3 100%)',
   },
   // Additional Brand Gradient presets
   {
@@ -68,14 +68,14 @@ export const BACKGROUND_PRESETS: BackgroundPreset[] = [
     label: 'Brand Vertical',
     category: 'brand-gradient',
     type: 'linear',
-    value: 'linear-gradient(180deg, #0E4B5B 0%, #24BCE3 50%, #E9F8FC 100%)',
+    value: 'linear-gradient(180deg, #0E4B5B 0%, #1D96B6 50%, #24BCE3 100%)',
   },
   {
     id: 'brand-gradient-diagonal',
     label: 'Brand Diagonal',
     category: 'brand-gradient',
     type: 'linear',
-    value: 'linear-gradient(135deg, #0E4B5B 0%, #167188 30%, #A7E4F4 70%, #E9F8FC 100%)',
+    value: 'linear-gradient(135deg, #0E4B5B 0%, #167188 35%, #1D96B6 65%, #24BCE3 100%)',
   },
   {
     id: 'brand-gradient-center',
@@ -89,14 +89,14 @@ export const BACKGROUND_PRESETS: BackgroundPreset[] = [
     label: 'Brand Soft',
     category: 'brand-gradient',
     type: 'linear',
-    value: 'linear-gradient(180deg, #167188 0%, #50C9E9 35%, #BDEBF7 70%, #FFFFFF 100%)',
+    value: 'linear-gradient(180deg, #0E4B5B 0%, #167188 30%, #1D96B6 60%, #50C9E9 100%)',
   },
   {
     id: 'brand-gradient-warm',
     label: 'Brand Warm',
     category: 'brand-gradient',
     type: 'linear',
-    value: 'linear-gradient(160deg, #0E4B5B 0%, #1D96B6 40%, #50C9E9 70%, #E9F8FC 100%)',
+    value: 'linear-gradient(160deg, #0E4B5B 0%, #1D96B6 40%, #24BCE3 70%, #50C9E9 100%)',
   },
   // Dark Technical presets
   {

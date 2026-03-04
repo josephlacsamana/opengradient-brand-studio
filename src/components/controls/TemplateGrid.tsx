@@ -42,6 +42,8 @@ export function TemplateGrid() {
         const sections = d.communitySections ?? []
         const totalMembers = sections.reduce((sum, s) => sum + s.members.length, 0)
 
+        const isCommunity = d.communityEnabled && sections.length > 0
+
         return (
           <button
             key={t.id}
@@ -53,21 +55,25 @@ export function TemplateGrid() {
             }`}
           >
             <div
-              className="h-20 w-full relative overflow-hidden"
-              style={{ background: getTemplateBackground(t) }}
+              className="w-full relative overflow-hidden"
+              style={{ background: getTemplateBackground(t), height: 80 }}
             >
               {/* Mini headline */}
               <div
                 style={{
                   position: 'absolute',
-                  inset: 0,
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  ...(isCommunity ? {} : { bottom: 0 }),
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: d.textVerticalPosition === 'top' ? 'flex-start'
+                  justifyContent: isCommunity ? 'flex-start'
+                    : d.textVerticalPosition === 'top' ? 'flex-start'
                     : d.textVerticalPosition === 'bottom' ? 'flex-end' : 'center',
                   alignItems: align === 'left' ? 'flex-start'
                     : align === 'right' ? 'flex-end' : 'center',
-                  padding: '6px 8px',
+                  padding: isCommunity ? '5px 6px 0' : '6px 8px',
                   gap: '1px',
                 }}
               >
@@ -75,18 +81,18 @@ export function TemplateGrid() {
                   style={{
                     fontFamily: d.headlineFontFamily ?? 'Geist',
                     fontWeight: d.headlineFontWeight ?? 700,
-                    fontSize: `${headlineSize}px`,
+                    fontSize: isCommunity ? '6px' : `${headlineSize}px`,
                     lineHeight: 1.15,
                     color: d.headlineColor ?? '#FFFFFF',
                     textAlign: align,
                     maxWidth: '100%',
                     overflow: 'hidden',
                     display: '-webkit-box',
-                    WebkitLineClamp: 2,
+                    WebkitLineClamp: isCommunity ? 1 : 2,
                     WebkitBoxOrient: 'vertical',
                   }}
                 >
-                  {d.headline ?? 'Headline'}
+                  {(d.headline ?? 'Headline').replace(/\n/g, ' ')}
                 </div>
                 {d.subtitle && (
                   <div
@@ -106,41 +112,73 @@ export function TemplateGrid() {
                     {d.subtitle}
                   </div>
                 )}
-
-                {/* Mini PFP circles for community templates */}
-                {d.communityEnabled && totalMembers > 0 && (
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      gap: '3px',
-                      justifyContent: align === 'left' ? 'flex-start'
-                        : align === 'right' ? 'flex-end' : 'center',
-                      marginTop: '3px',
-                      maxWidth: '100%',
-                    }}
-                  >
-                    {Array.from({ length: Math.min(totalMembers, 8) }).map((_, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          width: 8,
-                          height: 8,
-                          borderRadius: '50%',
-                          border: `1px solid ${d.communityAvatarBorderColor ?? '#40D1DB'}`,
-                          backgroundColor: 'rgba(255,255,255,0.1)',
-                          flexShrink: 0,
-                        }}
-                      />
-                    ))}
-                    {totalMembers > 8 && (
-                      <div style={{ fontSize: '5px', color: 'rgba(255,255,255,0.5)', alignSelf: 'center' }}>
-                        +{totalMembers - 8}
-                      </div>
-                    )}
-                  </div>
-                )}
               </div>
+
+              {/* Community grid preview — rendered as separate block below headline */}
+              {isCommunity && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: 6,
+                    right: 6,
+                    bottom: 6,
+                    top: d.subtitle ? 24 : 16,
+                    display: 'flex',
+                    gap: '4px',
+                  }}
+                >
+                  {sections.map((section, si) => {
+                    const cols = d.communityColumnsPerRow ?? 4
+                    const maxRows = 2
+                    const count = Math.min(section.members.length, cols * maxRows)
+                    return (
+                      <div
+                        key={si}
+                        style={{
+                          flex: 1,
+                          minWidth: 0,
+                          backgroundColor: 'rgba(255,255,255,0.05)',
+                          borderRadius: 3,
+                          padding: '2px 3px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '2px',
+                        }}
+                      >
+                        <div style={{
+                          fontSize: '5px',
+                          color: d.communitySectionTitleColor ?? '#FFFFFF',
+                          fontWeight: 700,
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                        }}>
+                          {section.title}
+                        </div>
+                        <div style={{
+                          display: 'grid',
+                          gridTemplateColumns: `repeat(${cols}, 1fr)`,
+                          gap: '3px',
+                          justifyItems: 'center',
+                        }}>
+                          {Array.from({ length: count }).map((_, i) => (
+                            <div
+                              key={i}
+                              style={{
+                                width: 7,
+                                height: 7,
+                                borderRadius: '50%',
+                                border: `1px solid ${d.communityAvatarBorderColor ?? '#40D1DB'}`,
+                                backgroundColor: 'rgba(255,255,255,0.08)',
+                              }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
 
               {/* Mini logo indicator */}
               {d.logoEnabled && (

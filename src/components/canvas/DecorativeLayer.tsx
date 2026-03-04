@@ -6,6 +6,7 @@ import { RadialLines } from '../decorations/RadialLines'
 import { HorizontalStreaks } from '../decorations/HorizontalStreaks'
 import { ConnectedNodes } from '../decorations/ConnectedNodes'
 import { GlowOrb } from '../decorations/GlowOrb'
+import { IsometricGrid } from '../decorations/IsometricGrid'
 
 interface DecorativeLayerProps {
   onLayerClick?: () => void
@@ -76,6 +77,15 @@ export function DecorativeLayer({ onLayerClick }: DecorativeLayerProps) {
           opacity={decorations.nodes.opacity}
           nodeCount={decorations.nodes.nodeCount}
           color={decorations.nodes.color}
+          width={width}
+          height={height}
+          onClick={handleClick}
+        />
+      )}
+      {decorations.isometricGrid.enabled && (
+        <IsometricGrid
+          opacity={decorations.isometricGrid.opacity}
+          color={decorations.isometricGrid.color}
           width={width}
           height={height}
           onClick={handleClick}
