@@ -14,6 +14,7 @@ import { hiringPost } from './hiring-post'
 import { communitySpotlight } from './community-spotlight'
 import { communityTopContributor } from './community-top-contributor'
 import { communityAward } from './community-award'
+import { modelHubChart } from './model-hub-chart'
 
 export const templates: TemplateDefinition[] = [
   brandGradientHero,
@@ -31,6 +32,7 @@ export const templates: TemplateDefinition[] = [
   communitySpotlight,
   communityTopContributor,
   communityAward,
+  modelHubChart,
 ]
 
 export function getTemplateById(id: string): TemplateDefinition | undefined {
