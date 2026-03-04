@@ -6,6 +6,9 @@ export interface FontDefinition {
 }
 
 export const FONT_REGISTRY: FontDefinition[] = [
+  // Brand Primary & Secondary
+  { family: 'Geist', category: 'sans-serif', weights: [400, 500, 600, 700, 800, 900], googleFontsName: 'Geist' },
+  { family: 'Geist Mono', category: 'monospace', weights: [400, 500, 600, 700], googleFontsName: 'Geist+Mono' },
   // Sans-Serif
   { family: 'Inter', category: 'sans-serif', weights: [400, 500, 600, 700, 800, 900], googleFontsName: 'Inter' },
   { family: 'Roboto', category: 'sans-serif', weights: [400, 500, 700, 900], googleFontsName: 'Roboto' },

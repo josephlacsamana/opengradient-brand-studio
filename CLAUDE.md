@@ -27,52 +27,27 @@
 
 ## Brand Kit
 
-### Color Palette
+### Color Palette (Official Brand Guide)
 
-#### Primary Brand Scale (Cyan/Teal)
+#### 4 Core Brand Colors
 ```
-#E9F8FC  — Primary 100 (lightest)
+#0E4B5B  — Teal Dark Blue (primary dark, headings on light BG)
+#24BCE3  — Caribbean Blue (primary accent)
+#E9F8FC  — Clear Skies (light background)
+#FFFFFF  — White
+```
+
+#### Extended Palette (derived, used in gradients/UI)
+```
 #BDEBF7  — Primary 200
 #A7E4F4  — Primary 300
 #50C9E9  — Primary 400
-#24BCE3  — Primary 500 (site primary)
 #1D96B6  — Primary 600
 #167188  — Primary 700
-#0E4B5B  — Primary 800 (headings, body text, icons on light BG)
 #041317  — Primary 900 (near-black teal)
-```
-
-#### Secondary Scale (Dark Navy)
-```
-#BFC8DC  — Secondary 100
-#1D2C4B  — Secondary 700
-#141E32  — Secondary 800 (dark navy)
-#0A0F19  — Secondary 950 (deepest dark)
-```
-
-#### Logo-Specific Color
-```
-#40D1DB  — Logo Cyan (used in SVG logo mark)
-```
-
-#### Semantic Colors
-```
-#41C885  — Success
-#F23A3A  — Error
-#C49508  — Warning
-#2C80ED  — Info
-```
-
-#### Surfaces & Text
-```
-#FFFFFF  — Surface Primary / White text on dark
-#0E4B5B  — Text Heading / Text Body / Icons (on light backgrounds)
-#97DEED  — Loading screen background
-```
-
-#### Neutrals
-```
-#F9FAFB, #F3F4F6, #E5E7EB, #D1D5DC, #99A1AF, #6A7282, #4A5565, #1E2939, #101828
+#40D1DB  — Logo Cyan (SVG logo mark only)
+#141E32  — Dark Navy
+#0A0F19  — Deepest Dark
 ```
 
 ### Two Visual Palettes
@@ -128,21 +103,21 @@ All logos are in `public/logos/` as SVG files:
 
 ### Font Registry
 
-23 fonts loaded via Google Fonts. Grouped by category:
+#### Brand Fonts (from official brand guide)
+- **Primary:** Geist (sans-serif) — all headlines and body text
+- **Secondary:** Geist Mono (monospace) — technical/code contexts
 
-**Sans-Serif:**
-Inter, Roboto, Open Sans, Poppins, Montserrat, Lato, Manrope, Space Grotesk, DM Sans, Plus Jakarta Sans
+All templates default to Geist/Geist Mono. Users can still switch to any font in the selector.
 
-**Serif:**
-Playfair Display, Merriweather, Lora, Cormorant Garamond
+#### Additional Fonts Available (25 total via Google Fonts)
 
-**Display:**
-Sora, Outfit, Orbitron, Bebas Neue, Oswald
+**Sans-Serif:** Geist, Inter, Roboto, Open Sans, Poppins, Montserrat, Lato, Manrope, Space Grotesk, DM Sans, Plus Jakarta Sans
 
-**Monospace:**
-JetBrains Mono, Fira Code, Space Mono
+**Serif:** Playfair Display, Merriweather, Lora, Cormorant Garamond
 
-**Note:** The team's specific branded fonts will be added later. The system supports local `.woff2` files in `public/fonts/` with `isLocal: true` flag in the font registry.
+**Display:** Sora, Outfit, Orbitron, Bebas Neue, Oswald, Raleway
+
+**Monospace:** Geist Mono, JetBrains Mono, Fira Code, Space Mono
 
 ---
 

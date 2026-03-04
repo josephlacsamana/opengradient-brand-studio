@@ -8,11 +8,11 @@ export const socialQuote: TemplateDefinition = {
   defaults: {
     headline: 'AI should be open,\nverifiable, and\npermissionless.',
     subtitle: '— OpenGradient',
-    headlineFontFamily: 'Playfair Display',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 56,
     headlineFontWeight: 500,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 20,
     subtitleFontWeight: 500,
     subtitleColor: '#A7E4F4',

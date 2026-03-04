@@ -8,11 +8,11 @@ export const darkTechStatement: TemplateDefinition = {
   defaults: {
     headline: 'Private data.\nPublic proof.',
     subtitle: '',
-    headlineFontFamily: 'Playfair Display',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 80,
     headlineFontWeight: 500,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 20,
     subtitleFontWeight: 400,
     subtitleColor: '#A7E4F4',

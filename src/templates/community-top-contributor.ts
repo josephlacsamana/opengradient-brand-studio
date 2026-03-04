@@ -8,11 +8,11 @@ export const communityTopContributor: TemplateDefinition = {
   defaults: {
     headline: 'Top Contributors',
     subtitle: '',
-    headlineFontFamily: 'Montserrat',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 52,
     headlineFontWeight: 800,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 20,
     subtitleFontWeight: 400,
     subtitleColor: '#E9F8FC',

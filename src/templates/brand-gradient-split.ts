@@ -8,11 +8,11 @@ export const brandGradientSplit: TemplateDefinition = {
   defaults: {
     headline: 'Building the Future\nof Open AI',
     subtitle: 'Decentralized, verifiable, and permissionless',
-    headlineFontFamily: 'Inter',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 64,
     headlineFontWeight: 700,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 22,
     subtitleFontWeight: 400,
     subtitleColor: '#E9F8FC',

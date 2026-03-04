@@ -8,11 +8,11 @@ export const teamSpotlight: TemplateDefinition = {
   defaults: {
     headline: 'Meet Sarah Chen',
     subtitle: 'Head of AI Research\nBuilding the future of verifiable inference at OpenGradient',
-    headlineFontFamily: 'Sora',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 56,
     headlineFontWeight: 700,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 22,
     subtitleFontWeight: 400,
     subtitleColor: '#A7E4F4',

@@ -8,11 +8,11 @@ export const blogCover: TemplateDefinition = {
   defaults: {
     headline: 'Building Better\nAI Memory',
     subtitle: 'The Architecture Behind MemSync',
-    headlineFontFamily: 'Inter',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 72,
     headlineFontWeight: 800,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 24,
     subtitleFontWeight: 400,
     subtitleColor: '#E9F8FC',

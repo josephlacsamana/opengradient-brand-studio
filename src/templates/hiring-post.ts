@@ -8,11 +8,11 @@ export const hiringPost: TemplateDefinition = {
   defaults: {
     headline: "We're Hiring!",
     subtitle: 'Senior AI Engineer\nJoin us in building open, verifiable AI infrastructure',
-    headlineFontFamily: 'Sora',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 72,
     headlineFontWeight: 800,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 24,
     subtitleFontWeight: 400,
     subtitleColor: '#E9F8FC',

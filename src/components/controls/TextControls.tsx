@@ -2,15 +2,15 @@ import { useEditorStore } from '../../store/editorStore'
 import { AlignLeft, AlignCenter, AlignRight } from 'lucide-react'
 
 const TEXT_COLOR_PRESETS = [
+  // Official brand palette (4 core colors)
   { color: '#FFFFFF', label: 'White' },
-  { color: '#E9F8FC', label: 'Lightest Cyan' },
+  { color: '#E9F8FC', label: 'Clear Skies' },
+  { color: '#24BCE3', label: 'Caribbean Blue' },
+  { color: '#0E4B5B', label: 'Teal Dark Blue' },
+  // Extended useful colors
   { color: '#A7E4F4', label: 'Light Cyan' },
   { color: '#40D1DB', label: 'Logo Cyan' },
-  { color: '#24BCE3', label: 'Primary' },
-  { color: '#0E4B5B', label: 'Dark Teal' },
-  { color: '#BFC8DC', label: 'Light Gray' },
   { color: '#141E32', label: 'Dark Navy' },
-  { color: '#0A0F19', label: 'Deepest Dark' },
   { color: '#000000', label: 'Black' },
 ]
 

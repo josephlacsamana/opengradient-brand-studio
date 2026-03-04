@@ -8,11 +8,11 @@ export const brandGradientHero: TemplateDefinition = {
   defaults: {
     headline: 'The Network for\nOpen Intelligence',
     subtitle: 'Powering the next generation of verifiable AI',
-    headlineFontFamily: 'Inter',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 72,
     headlineFontWeight: 700,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 24,
     subtitleFontWeight: 400,
     subtitleColor: '#FFFFFF',

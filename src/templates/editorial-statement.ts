@@ -8,11 +8,11 @@ export const editorialStatement: TemplateDefinition = {
   defaults: {
     headline: 'The future of AI\nis verifiable.',
     subtitle: 'A new paradigm for trust in machine intelligence',
-    headlineFontFamily: 'Playfair Display',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 68,
     headlineFontWeight: 700,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 20,
     subtitleFontWeight: 300,
     subtitleColor: '#BDEBF7',

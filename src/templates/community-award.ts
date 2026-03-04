@@ -8,11 +8,11 @@ export const communityAward: TemplateDefinition = {
   defaults: {
     headline: 'Best Community Members',
     subtitle: '',
-    headlineFontFamily: 'Sora',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 52,
     headlineFontWeight: 700,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 20,
     subtitleFontWeight: 400,
     subtitleColor: '#A7E4F4',

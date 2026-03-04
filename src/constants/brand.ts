@@ -1,3 +1,12 @@
+// Official Brand Palette (4 core colors from brand guide)
+export const BRAND_CORE = {
+  tealDarkBlue: '#0E4B5B',   // Teal Dark Blue — primary dark
+  caribbeanBlue: '#24BCE3',   // Caribbean Blue — primary accent
+  clearSkies: '#E9F8FC',      // Clear Skies — light background
+  white: '#FFFFFF',            // White
+} as const;
+
+// Extended palette for gradients and UI (derived from core)
 export const BRAND_COLORS = {
   primary: {
     50: '#E9F8FC',

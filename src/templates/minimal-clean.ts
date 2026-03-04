@@ -8,11 +8,11 @@ export const minimalClean: TemplateDefinition = {
   defaults: {
     headline: 'Less noise.\nMore signal.',
     subtitle: 'OpenGradient',
-    headlineFontFamily: 'DM Sans',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 64,
     headlineFontWeight: 600,
     headlineColor: '#0E4B5B',
-    subtitleFontFamily: 'DM Sans',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 18,
     subtitleFontWeight: 500,
     subtitleColor: '#167188',

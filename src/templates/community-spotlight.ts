@@ -8,11 +8,11 @@ export const communitySpotlight: TemplateDefinition = {
   defaults: {
     headline: 'Weekly Yapper Highlights',
     subtitle: '',
-    headlineFontFamily: 'Playfair Display',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 56,
     headlineFontWeight: 700,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 20,
     subtitleFontWeight: 400,
     subtitleColor: '#A7E4F4',

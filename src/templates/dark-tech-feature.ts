@@ -8,11 +8,11 @@ export const darkTechFeature: TemplateDefinition = {
   defaults: {
     headline: 'Proof of Intelligence:\nVerifiability',
     subtitle: '',
-    headlineFontFamily: 'Playfair Display',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 64,
     headlineFontWeight: 600,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 22,
     subtitleFontWeight: 400,
     subtitleColor: '#A7E4F4',

@@ -8,11 +8,11 @@ export const threadCloser: TemplateDefinition = {
   defaults: {
     headline: 'End of thread.',
     subtitle: 'THANKS FOR READING',
-    headlineFontFamily: 'Playfair Display',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 80,
     headlineFontWeight: 500,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Space Mono',
+    subtitleFontFamily: 'Geist Mono',
     subtitleFontSize: 16,
     subtitleFontWeight: 400,
     subtitleColor: '#6A7282',

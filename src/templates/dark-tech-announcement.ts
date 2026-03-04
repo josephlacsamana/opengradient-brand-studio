@@ -8,11 +8,11 @@ export const darkTechAnnouncement: TemplateDefinition = {
   defaults: {
     headline: 'Introducing PIPE',
     subtitle: 'Parallel Inference Pre-Execution Engine',
-    headlineFontFamily: 'Playfair Display',
+    headlineFontFamily: 'Geist',
     headlineFontSize: 80,
     headlineFontWeight: 700,
     headlineColor: '#FFFFFF',
-    subtitleFontFamily: 'Inter',
+    subtitleFontFamily: 'Geist',
     subtitleFontSize: 24,
     subtitleFontWeight: 400,
     subtitleColor: '#A7E4F4',
