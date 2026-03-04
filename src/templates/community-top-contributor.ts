@@ -3,7 +3,7 @@ import type { TemplateDefinition } from '../types/template'
 export const communityTopContributor: TemplateDefinition = {
   id: 'community-top-contributor',
   name: 'Template 14',
-  description: 'Highlight 6 community members in a clean grid',
+  description: 'Highlight 8 community members in a clean grid',
   category: 'brand-gradient',
   defaults: {
     headline: 'Top Contributors',
@@ -37,7 +37,7 @@ export const communityTopContributor: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'cyan',
     logoPosition: 'bottom-center',
-    logoScale: 1.0,
+    logoScale: 2.0,
     logoPadding: 30,
     communityEnabled: true,
     communitySections: [
@@ -50,6 +50,8 @@ export const communityTopContributor: TemplateDefinition = {
           { imageUrl: null, username: '@member4' },
           { imageUrl: null, username: '@member5' },
           { imageUrl: null, username: '@member6' },
+          { imageUrl: null, username: '@member7' },
+          { imageUrl: null, username: '@member8' },
         ],
       },
     ],
@@ -58,8 +60,8 @@ export const communityTopContributor: TemplateDefinition = {
     communityAvatarBorderWidth: 3,
     communitySectionTitleColor: '#FFFFFF',
     communitySectionTitleSize: 24,
-    communityUsernameColor: '#E9F8FC',
+    communityUsernameColor: '#FFFFFF',
     communityUsernameSize: 15,
-    communityColumnsPerRow: 3,
+    communityColumnsPerRow: 4,
   },
 }
