@@ -23,7 +23,7 @@ export async function captureThumbnail(canvasElement: HTMLElement): Promise<stri
     return await toPng(clone, {
       width: w,
       height: h,
-      pixelRatio: 0.3,
+      pixelRatio: 0.6,
       cacheBust: true,
     })
   } finally {

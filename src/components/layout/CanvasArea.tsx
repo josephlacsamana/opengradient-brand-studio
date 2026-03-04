@@ -45,13 +45,34 @@ export function CanvasArea({ canvasRef }: Props) {
     switchDesign(targetId)
   }, [activeDesignId, canvasRef, switchDesign, setThumbnail])
 
-  const handleDuplicate = useCallback((designId: string, isActive: boolean) => {
-    if (!isActive) {
-      captureAndSwitch(designId)
+  // Capture thumbnail of active page, then run callback
+  const captureBeforeAction = useCallback((action: () => void) => {
+    if (canvasRef.current) {
+      const currentId = activeDesignId
+      captureThumbnail(canvasRef.current)
+        .then(dataUrl => {
+          setThumbnail(currentId, dataUrl)
+          action()
+        })
+        .catch(() => action())
+    } else {
+      action()
     }
-    // Small delay to let switchDesign settle before duplicating
-    setTimeout(() => duplicateDesign(), isActive ? 0 : 50)
-  }, [captureAndSwitch, duplicateDesign])
+  }, [activeDesignId, canvasRef, setThumbnail])
+
+  const handleDuplicate = useCallback((designId: string, isActive: boolean) => {
+    if (isActive) {
+      // Capture thumbnail of current page first, then duplicate
+      captureBeforeAction(() => duplicateDesign())
+    } else {
+      captureAndSwitch(designId)
+      setTimeout(() => duplicateDesign(), 50)
+    }
+  }, [captureAndSwitch, captureBeforeAction, duplicateDesign])
+
+  const handleAddPage = useCallback(() => {
+    captureBeforeAction(() => addNewDesign())
+  }, [captureBeforeAction, addNewDesign])
 
   const commitRename = () => {
     if (editingId && editValue.trim()) {
@@ -176,7 +197,7 @@ export function CanvasArea({ canvasRef }: Props) {
 
         {/* Add page button */}
         <button
-          onClick={addNewDesign}
+          onClick={handleAddPage}
           className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-dashed border-white/20 text-brand-dark-100 hover:text-brand-cyan hover:border-brand-cyan/40 transition-colors text-xs"
         >
           <Plus size={14} />
