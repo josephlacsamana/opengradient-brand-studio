@@ -40,7 +40,29 @@ export interface BackgroundPreset {
 }
 
 export const BACKGROUND_PRESETS: BackgroundPreset[] = [
-  // Brand Gradient presets
+  // Official Brand Gradients (from brand guide)
+  {
+    id: 'brand-header-gradient',
+    label: 'Header Gradient',
+    category: 'brand-gradient',
+    type: 'linear',
+    value: 'linear-gradient(180deg, #0E4B5B 0%, #0E4B5B 25%, #24BCE3 60%, #E9F8FC 100%)',
+  },
+  {
+    id: 'brand-footer-gradient',
+    label: 'Footer Gradient',
+    category: 'brand-gradient',
+    type: 'radial',
+    value: 'radial-gradient(ellipse at 50% 100%, #0E4B5B 0%, #24BCE3 35%, #E9F8FC 65%, #E9F8FC 100%)',
+  },
+  {
+    id: 'brand-section-gradient',
+    label: 'Section Gradient',
+    category: 'brand-gradient',
+    type: 'linear',
+    value: 'linear-gradient(135deg, #0E4B5B 0%, #24BCE3 50%, #E9F8FC 100%)',
+  },
+  // Additional Brand Gradient presets
   {
     id: 'brand-gradient-vertical',
     label: 'Brand Vertical',

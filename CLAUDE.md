@@ -68,18 +68,25 @@ Used for: Twitter/X threads, product features, technical deep-dives
 ### Background Gradient Presets
 
 ```typescript
-// Brand Gradient presets (light/teal mode)
+// Official Brand Gradients (from brand guide)
+'brand-header-gradient':      180deg, #0E4B5B → #24BCE3 → #E9F8FC (dark top to light bottom)
+'brand-footer-gradient':      radial from bottom center, #0E4B5B → #24BCE3 → #E9F8FC
+'brand-section-gradient':     135deg, #0E4B5B → #24BCE3 → #E9F8FC (diagonal sweep)
+
+// Additional Brand Gradient presets
 'brand-gradient-vertical':    180deg, #0E4B5B → #24BCE3 → #E9F8FC
 'brand-gradient-diagonal':    135deg, #0E4B5B → #167188 → #A7E4F4 → #E9F8FC
-'brand-gradient-center':      radial, #0E4B5B → #24BCE3 → #E9F8FC
+'brand-gradient-center':      radial, #24BCE3 → #0E4B5B → #041317
 'brand-gradient-soft':        180deg, #167188 → #50C9E9 → #BDEBF7 → #FFFFFF
+'brand-gradient-warm':        160deg, #0E4B5B → #1D96B6 → #50C9E9 → #E9F8FC
 
 // Dark Technical presets
 'dark-deepest':               solid #0A0F19
 'dark-navy':                  solid #141E32
-'dark-teal-glow':             radial from center, #0E4B5B 0% → #0A0F19 70%
+'dark-teal-glow':             radial from center, #0E4B5B → #0A0F19
 'dark-gradient-vertical':     180deg, #141E32 → #0A0F19
 'dark-gradient-teal':         180deg, #0E4B5B → #041317
+'dark-gradient-bottom-glow':  radial from bottom, #0E4B5B → #0A0F19
 ```
 
 ### Logo Assets
