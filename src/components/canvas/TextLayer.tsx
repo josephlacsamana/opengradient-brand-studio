@@ -1,6 +1,10 @@
 import { useEditorStore } from '../../store/editorStore'
 
-export function TextLayer() {
+interface TextLayerProps {
+  onLayerClick?: () => void
+}
+
+export function TextLayer({ onLayerClick }: TextLayerProps) {
   const {
     headline, subtitle,
     headlineFontFamily, headlineFontSize, headlineFontWeight, headlineColor,
@@ -36,6 +40,7 @@ export function TextLayer() {
     >
       {headline && (
         <div
+          onClick={(e) => { e.stopPropagation(); onLayerClick?.() }}
           style={{
             fontFamily: `'${headlineFontFamily}', sans-serif`,
             fontSize: `${headlineFontSize}px`,
@@ -45,6 +50,8 @@ export function TextLayer() {
             textAlign: textAlignment,
             whiteSpace: 'pre-line',
             maxWidth: '100%',
+            pointerEvents: 'auto',
+            cursor: 'pointer',
           }}
         >
           {headline}
@@ -52,6 +59,7 @@ export function TextLayer() {
       )}
       {subtitle && (
         <div
+          onClick={(e) => { e.stopPropagation(); onLayerClick?.() }}
           style={{
             fontFamily: `'${subtitleFontFamily}', sans-serif`,
             fontSize: `${subtitleFontSize}px`,
@@ -62,6 +70,8 @@ export function TextLayer() {
             marginTop: `${Math.round(headlineFontSize * 0.3)}px`,
             whiteSpace: 'pre-line',
             maxWidth: '100%',
+            pointerEvents: 'auto',
+            cursor: 'pointer',
           }}
         >
           {subtitle}

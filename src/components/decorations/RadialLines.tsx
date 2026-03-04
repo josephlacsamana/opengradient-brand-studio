@@ -5,9 +5,10 @@ interface Props {
   color: string
   width: number
   height: number
+  onClick?: (e: React.MouseEvent) => void
 }
 
-export function RadialLines({ opacity, color, width, height }: Props) {
+export function RadialLines({ opacity, color, width, height, onClick }: Props) {
   const lines = useMemo(() => {
     const cx = width / 2
     const cy = height / 2
@@ -27,7 +28,8 @@ export function RadialLines({ opacity, color, width, height }: Props) {
 
   return (
     <svg
-      style={{ position: 'absolute', inset: 0, opacity }}
+      onClick={onClick}
+      style={{ position: 'absolute', inset: 0, opacity, pointerEvents: onClick ? 'auto' : 'none', cursor: onClick ? 'pointer' : 'default' }}
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
     >

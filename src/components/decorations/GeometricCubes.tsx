@@ -6,6 +6,7 @@ interface Props {
   color: string
   width: number
   height: number
+  onClick?: (e: React.MouseEvent) => void
 }
 
 function seededRandom(seed: number): () => number {
@@ -27,7 +28,7 @@ function cubePath(cx: number, cy: number, size: number): string {
   return `${top} ${left} ${right}`
 }
 
-export function GeometricCubes({ opacity, count, color, width, height }: Props) {
+export function GeometricCubes({ opacity, count, color, width, height, onClick }: Props) {
   const cubes = useMemo(() => {
     const rand = seededRandom(123)
     return Array.from({ length: count }, () => ({
@@ -41,7 +42,8 @@ export function GeometricCubes({ opacity, count, color, width, height }: Props) 
 
   return (
     <svg
-      style={{ position: 'absolute', inset: 0, opacity }}
+      onClick={onClick}
+      style={{ position: 'absolute', inset: 0, opacity, pointerEvents: onClick ? 'auto' : 'none', cursor: onClick ? 'pointer' : 'default' }}
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
     >

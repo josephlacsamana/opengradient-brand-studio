@@ -7,18 +7,28 @@ import { HorizontalStreaks } from '../decorations/HorizontalStreaks'
 import { ConnectedNodes } from '../decorations/ConnectedNodes'
 import { GlowOrb } from '../decorations/GlowOrb'
 
-export function DecorativeLayer() {
+interface DecorativeLayerProps {
+  onLayerClick?: () => void
+}
+
+export function DecorativeLayer({ onLayerClick }: DecorativeLayerProps) {
   const decorations = useEditorStore(s => s.decorations)
   const { customWidth: width, customHeight: height } = useExportStore()
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    onLayerClick?.()
+  }
+
   return (
-    <div style={{ position: 'absolute', inset: 0, zIndex: 2, overflow: 'hidden' }}>
+    <div style={{ position: 'absolute', inset: 0, zIndex: 2, overflow: 'hidden', pointerEvents: 'none' }}>
       {decorations.glow.enabled && (
         <GlowOrb
           opacity={decorations.glow.opacity}
           color={decorations.glow.color}
           x={decorations.glow.x}
           y={decorations.glow.y}
+          onClick={handleClick}
         />
       )}
       {decorations.particles.enabled && (
@@ -28,6 +38,7 @@ export function DecorativeLayer() {
           color={decorations.particles.color}
           width={width}
           height={height}
+          onClick={handleClick}
         />
       )}
       {decorations.cubes.enabled && (
@@ -37,6 +48,7 @@ export function DecorativeLayer() {
           color={decorations.cubes.color}
           width={width}
           height={height}
+          onClick={handleClick}
         />
       )}
       {decorations.radialLines.enabled && (
@@ -45,6 +57,7 @@ export function DecorativeLayer() {
           color={decorations.radialLines.color}
           width={width}
           height={height}
+          onClick={handleClick}
         />
       )}
       {decorations.streaks.enabled && (
@@ -54,6 +67,7 @@ export function DecorativeLayer() {
           color={decorations.streaks.color}
           width={width}
           height={height}
+          onClick={handleClick}
         />
       )}
       {decorations.nodes.enabled && (
@@ -63,6 +77,7 @@ export function DecorativeLayer() {
           color={decorations.nodes.color}
           width={width}
           height={height}
+          onClick={handleClick}
         />
       )}
     </div>

@@ -2,13 +2,16 @@ import { AppShell } from './components/layout/AppShell'
 import { useExport } from './hooks/useExport'
 import { useFontLoader } from './hooks/useFontLoader'
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
+import { useDesignCollectionStore } from './store/designCollectionStore'
 
 function App() {
   const { canvasRef, exportCurrent, exportAll } = useExport()
   const fontsLoaded = useFontLoader()
+  const duplicateDesign = useDesignCollectionStore(s => s.duplicateDesign)
 
   useKeyboardShortcuts({
     onExport: exportCurrent,
+    onDuplicate: duplicateDesign,
   })
 
   if (!fontsLoaded) {

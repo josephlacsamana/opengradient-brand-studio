@@ -4,6 +4,7 @@ interface ShortcutHandlers {
   onUndo?: () => void
   onRedo?: () => void
   onExport?: () => void
+  onDuplicate?: () => void
 }
 
 export function useKeyboardShortcuts(handlers: ShortcutHandlers) {
@@ -22,6 +23,10 @@ export function useKeyboardShortcuts(handlers: ShortcutHandlers) {
       if (isCtrl && e.key === 'e') {
         e.preventDefault()
         handlers.onExport?.()
+      }
+      if (isCtrl && e.key === 'd') {
+        e.preventDefault()
+        handlers.onDuplicate?.()
       }
     }
 

@@ -45,6 +45,29 @@ export interface EditorState {
   communityColumnsPerRow: number;
 }
 
+export interface Design {
+  id: string
+  name: string
+  state: EditorState
+  thumbnail: string | null
+}
+
+export interface DesignCollectionState {
+  designs: Design[]
+  activeDesignId: string
+}
+
+export interface DesignCollectionActions {
+  duplicateDesign: () => void
+  addNewDesign: () => void
+  switchDesign: (designId: string) => void
+  deleteDesign: (designId: string) => void
+  renameDesign: (designId: string, name: string) => void
+  saveActiveDesignState: () => void
+  moveDesign: (designId: string, direction: 'up' | 'down') => void
+  setThumbnail: (designId: string, dataUrl: string) => void
+}
+
 export interface EditorActions {
   applyTemplate: (templateId: string) => void;
   setField: <K extends keyof EditorState>(key: K, value: EditorState[K]) => void;

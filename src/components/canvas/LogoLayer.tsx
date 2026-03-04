@@ -1,7 +1,11 @@
 import { useEditorStore } from '../../store/editorStore'
 import { getLogoPath } from '../../constants/logos'
 
-export function LogoLayer() {
+interface LogoLayerProps {
+  onLayerClick?: () => void
+}
+
+export function LogoLayer({ onLayerClick }: LogoLayerProps) {
   const logoEnabled = useEditorStore(s => s.logoEnabled)
   const logoVariant = useEditorStore(s => s.logoVariant)
   const logoColor = useEditorStore(s => s.logoColor)
@@ -35,11 +39,14 @@ export function LogoLayer() {
     <img
       src={src}
       alt="OpenGradient"
+      onClick={(e) => { e.stopPropagation(); onLayerClick?.() }}
       style={{
         ...posStyle,
         height: `${height}px`,
         width: 'auto',
         objectFit: 'contain',
+        pointerEvents: 'auto',
+        cursor: 'pointer',
       }}
     />
   )

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { TextControls } from '../controls/TextControls'
 import { FontSelector } from '../controls/FontSelector'
@@ -7,6 +7,7 @@ import { DecorationControls } from '../controls/DecorationControls'
 import { LogoControls } from '../controls/LogoControls'
 import { CommunityControls } from '../controls/CommunityControls'
 import { ExportControls } from '../controls/ExportControls'
+import { useUIStore, type PanelSectionId } from '../../store/uiStore'
 
 interface Props {
   onExport: () => void
@@ -14,15 +15,30 @@ interface Props {
 }
 
 interface SectionProps {
+  sectionId: PanelSectionId
   title: string
   defaultOpen?: boolean
   children: React.ReactNode
 }
 
-function Section({ title, defaultOpen = false, children }: SectionProps) {
+function Section({ sectionId, title, defaultOpen = false, children }: SectionProps) {
   const [open, setOpen] = useState(defaultOpen)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const focusedSection = useUIStore(s => s.focusedSection)
+  const setFocusedSection = useUIStore(s => s.setFocusedSection)
+
+  useEffect(() => {
+    if (focusedSection === sectionId) {
+      setOpen(true)
+      requestAnimationFrame(() => {
+        sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+      setFocusedSection(null)
+    }
+  }, [focusedSection, sectionId, setFocusedSection])
+
   return (
-    <div className="border-b border-white/5">
+    <div ref={sectionRef} className="border-b border-white/5">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between p-3 hover:bg-white/5 transition-colors"
@@ -41,25 +57,25 @@ function Section({ title, defaultOpen = false, children }: SectionProps) {
 export function PropertiesPanel({ onExport, onExportAll }: Props) {
   return (
     <aside className="h-full overflow-y-auto bg-brand-dark-800 border-l border-white/5">
-      <Section title="Text" defaultOpen>
+      <Section sectionId="text" title="Text" defaultOpen>
         <TextControls />
       </Section>
-      <Section title="Fonts" defaultOpen>
+      <Section sectionId="fonts" title="Fonts" defaultOpen>
         <FontSelector />
       </Section>
-      <Section title="Background" defaultOpen>
+      <Section sectionId="background" title="Background" defaultOpen>
         <BackgroundControls />
       </Section>
-      <Section title="Decorations">
+      <Section sectionId="decorations" title="Decorations">
         <DecorationControls />
       </Section>
-      <Section title="Logo">
+      <Section sectionId="logo" title="Logo">
         <LogoControls />
       </Section>
-      <Section title="Community Grid">
+      <Section sectionId="community-grid" title="Community Grid">
         <CommunityControls />
       </Section>
-      <Section title="Export" defaultOpen>
+      <Section sectionId="export" title="Export" defaultOpen>
         <ExportControls onExport={onExport} onExportAll={onExportAll} />
       </Section>
     </aside>

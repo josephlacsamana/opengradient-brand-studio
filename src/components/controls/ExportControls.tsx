@@ -1,4 +1,5 @@
 import { useExportStore } from '../../store/exportStore'
+import { useDesignCollectionStore } from '../../store/designCollectionStore'
 import { EXPORT_SIZE_PRESETS } from '../../constants/exportSizes'
 import { Download, Layers } from 'lucide-react'
 
@@ -9,6 +10,7 @@ interface Props {
 
 export function ExportControls({ onExport, onExportAll }: Props) {
   const { selectedPresetId, customWidth, customHeight, isExporting, exportProgress, setPreset, setCustomDimensions } = useExportStore()
+  const designCount = useDesignCollectionStore(s => s.designs.length)
 
   return (
     <div className="space-y-3 p-3">
@@ -72,7 +74,11 @@ export function ExportControls({ onExport, onExportAll }: Props) {
           className="w-full flex items-center justify-center gap-2 bg-brand-cyan text-brand-dark-950 font-semibold py-2.5 rounded-lg hover:bg-brand-cyan-400 transition-colors disabled:opacity-50"
         >
           <Download size={16} />
-          {isExporting ? 'Exporting...' : 'Export PNG'}
+          {isExporting && exportProgress > 0
+            ? `Exporting... ${Math.round(exportProgress)}%`
+            : designCount > 1
+              ? `Export All Designs (${designCount})`
+              : 'Export PNG'}
         </button>
 
         <button

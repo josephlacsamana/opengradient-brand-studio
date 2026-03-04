@@ -6,6 +6,7 @@ interface Props {
   color: string
   width: number
   height: number
+  onClick?: (e: React.MouseEvent) => void
 }
 
 function seededRandom(seed: number): () => number {
@@ -16,7 +17,7 @@ function seededRandom(seed: number): () => number {
   }
 }
 
-export function ConnectedNodes({ opacity, nodeCount, color, width, height }: Props) {
+export function ConnectedNodes({ opacity, nodeCount, color, width, height, onClick }: Props) {
   const { nodes, edges } = useMemo(() => {
     const rand = seededRandom(99)
     const pts = Array.from({ length: nodeCount }, () => ({
@@ -47,7 +48,8 @@ export function ConnectedNodes({ opacity, nodeCount, color, width, height }: Pro
 
   return (
     <svg
-      style={{ position: 'absolute', inset: 0, opacity }}
+      onClick={onClick}
+      style={{ position: 'absolute', inset: 0, opacity, pointerEvents: onClick ? 'auto' : 'none', cursor: onClick ? 'pointer' : 'default' }}
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
     >

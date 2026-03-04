@@ -1,6 +1,10 @@
 import { useEditorStore } from '../../store/editorStore'
 
-export function CommunityGridLayer() {
+interface CommunityGridLayerProps {
+  onLayerClick?: () => void
+}
+
+export function CommunityGridLayer({ onLayerClick }: CommunityGridLayerProps) {
   const communityEnabled = useEditorStore(s => s.communityEnabled)
   const communitySections = useEditorStore(s => s.communitySections)
   const avatarSize = useEditorStore(s => s.communityAvatarSize)
@@ -39,12 +43,15 @@ export function CommunityGridLayer() {
     >
       {/* Sections container */}
       <div
+        onClick={(e) => { e.stopPropagation(); onLayerClick?.() }}
         style={{
           display: 'flex',
           flexWrap: 'wrap',
           gap: '12px',
           alignContent: 'center',
           justifyContent: 'center',
+          pointerEvents: 'auto',
+          cursor: 'pointer',
         }}
       >
         {communitySections.map((section, sIndex) => (

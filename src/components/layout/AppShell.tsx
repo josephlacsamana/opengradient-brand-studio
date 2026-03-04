@@ -1,6 +1,9 @@
 import { Sidebar } from './Sidebar'
 import { CanvasArea } from './CanvasArea'
 import { PropertiesPanel } from './PropertiesPanel'
+import { useDesignCollectionStore } from '../../store/designCollectionStore'
+import { useExportStore } from '../../store/exportStore'
+import { Download } from 'lucide-react'
 
 interface Props {
   canvasRef: React.RefObject<HTMLDivElement | null>
@@ -9,6 +12,10 @@ interface Props {
 }
 
 export function AppShell({ canvasRef, onExport, onExportAll }: Props) {
+  const designCount = useDesignCollectionStore(s => s.designs.length)
+  const isExporting = useExportStore(s => s.isExporting)
+  const exportProgress = useExportStore(s => s.exportProgress)
+
   return (
     <div className="h-screen flex flex-col">
       {/* Header */}
@@ -19,9 +26,15 @@ export function AppShell({ canvasRef, onExport, onExportAll }: Props) {
         </div>
         <button
           onClick={onExport}
-          className="bg-brand-cyan text-brand-dark-950 text-xs font-semibold px-4 py-2 rounded-lg hover:bg-brand-cyan-400 transition-colors"
+          disabled={isExporting}
+          className="flex items-center gap-2 bg-brand-cyan text-brand-dark-950 text-xs font-semibold px-4 py-2 rounded-lg hover:bg-brand-cyan-400 transition-colors disabled:opacity-50"
         >
-          Export PNG
+          <Download size={14} />
+          {isExporting && exportProgress > 0
+            ? `Exporting... ${Math.round(exportProgress)}%`
+            : designCount > 1
+              ? `Export All (${designCount})`
+              : 'Export PNG'}
         </button>
       </header>
 

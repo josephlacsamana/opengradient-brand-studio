@@ -1,7 +1,11 @@
 import { BACKGROUND_PRESETS } from '../../constants/brand'
 import { useEditorStore } from '../../store/editorStore'
 
-export function BackgroundLayer() {
+interface BackgroundLayerProps {
+  onLayerClick?: () => void
+}
+
+export function BackgroundLayer({ onLayerClick }: BackgroundLayerProps) {
   const backgroundType = useEditorStore(s => s.backgroundType)
   const backgroundPresetId = useEditorStore(s => s.backgroundPresetId)
   const solidColor = useEditorStore(s => s.solidColor)
@@ -17,11 +21,13 @@ export function BackgroundLayer() {
 
   return (
     <div
+      onClick={onLayerClick}
       style={{
         position: 'absolute',
         inset: 0,
         background,
         zIndex: 1,
+        cursor: 'pointer',
       }}
     />
   )

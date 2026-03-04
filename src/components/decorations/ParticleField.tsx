@@ -6,6 +6,7 @@ interface Props {
   color: string
   width: number
   height: number
+  onClick?: (e: React.MouseEvent) => void
 }
 
 function seededRandom(seed: number): () => number {
@@ -16,7 +17,7 @@ function seededRandom(seed: number): () => number {
   }
 }
 
-export function ParticleField({ opacity, density, color, width, height }: Props) {
+export function ParticleField({ opacity, density, color, width, height, onClick }: Props) {
   const particles = useMemo(() => {
     const rand = seededRandom(42)
     return Array.from({ length: density }, () => ({
@@ -29,7 +30,8 @@ export function ParticleField({ opacity, density, color, width, height }: Props)
 
   return (
     <svg
-      style={{ position: 'absolute', inset: 0, opacity }}
+      onClick={onClick}
+      style={{ position: 'absolute', inset: 0, opacity, pointerEvents: onClick ? 'auto' : 'none', cursor: onClick ? 'pointer' : 'default' }}
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
     >

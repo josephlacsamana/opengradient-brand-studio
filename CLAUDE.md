@@ -176,10 +176,29 @@ const b = useEditorStore(s => s.b)
 
 ### State Management
 
-Three Zustand stores:
-- `editorStore` — All visual state (text, background, decorations, logo, community grid, active template)
+Four Zustand stores:
+- `editorStore` — All visual state (text, background, decorations, logo, community grid, active template). Acts as the "active working copy" for the currently selected design.
+- `designCollectionStore` — Multi-design collection. Manages an array of `Design` objects (each containing a complete `EditorState` snapshot). Supports duplicate, switch, delete, rename, reorder. On design switch, saves current editorStore → collection, loads target → editorStore.
 - `exportStore` — Export dimensions, size preset selection, exporting flag
 - `historyStore` — Undo/redo stack with debounced snapshots
+
+### Design Collection Architecture
+
+```
+designCollectionStore                editorStore (active design)
+┌─────────────────────┐              ┌──────────────────────┐
+│ designs: [          │    load →    │  headline: "..."     │
+│   { id, name, state }│  ← save    │  subtitle: "..."     │
+│   { id, name, state }│             │  ... 46 fields       │
+│ ]                   │              └──────────────────────┘
+│ activeDesignId      │                      ↓
+└─────────────────────┘              Canvas reads from here
+```
+
+Key files:
+- `src/store/designCollectionStore.ts` — Collection store with all actions
+- `src/lib/editorStateUtils.ts` — `extractEditorState()` and `loadEditorState()` helpers
+- `src/types/editor.ts` — `Design`, `DesignCollectionState`, `DesignCollectionActions` types
 
 ### Export Pipeline
 
@@ -254,6 +273,7 @@ opengradient-brand-studio/
 │   │   └── community-award.ts
 │   ├── store/
 │   │   ├── editorStore.ts
+│   │   ├── designCollectionStore.ts
 │   │   ├── exportStore.ts
 │   │   └── historyStore.ts
 │   ├── hooks/
@@ -265,12 +285,14 @@ opengradient-brand-studio/
 │   │   ├── exportPipeline.ts
 │   │   ├── fontLoader.ts
 │   │   ├── colorUtils.ts
-│   │   └── templateUtils.ts
+│   │   ├── templateUtils.ts
+│   │   └── editorStateUtils.ts
 │   ├── components/
 │   │   ├── layout/
 │   │   │   ├── AppShell.tsx
 │   │   │   ├── Sidebar.tsx
 │   │   │   ├── CanvasArea.tsx
+│   │   │   ├── DesignTabs.tsx
 │   │   │   └── PropertiesPanel.tsx
 │   │   ├── canvas/
 │   │   │   ├── CanvasRenderer.tsx
@@ -302,7 +324,8 @@ opengradient-brand-studio/
 │   │       ├── Slider.tsx
 │   │       ├── Toggle.tsx
 │   │       ├── Input.tsx
-│   │       └── Tabs.tsx
+│   │       ├── Tabs.tsx
+│   │       └── ColorSwatches.tsx
 │   └── assets/
 │       └── decorations/
 ```
@@ -368,6 +391,7 @@ All exports are at `pixelRatio: 2` for retina quality.
 | `Ctrl+Z` | Undo |
 | `Ctrl+Shift+Z` | Redo |
 | `Ctrl+E` | Export current size |
+| `Ctrl+D` | Duplicate current design |
 
 ---
 
@@ -434,4 +458,40 @@ Vercel will auto-deploy after push. Check deployment status at vercel.com dashbo
 
 ## UI Enhancements Log
 
-- [x] **Brand color swatches for text colors** — Headline and Subtitle color pickers now have 10 clickable brand palette presets (White, Lightest Cyan, Light Cyan, Logo Cyan, Primary, Dark Teal, Light Gray, Dark Navy, Deepest Dark, Black) above the full color picker. Defined in `TextControls.tsx` as `TEXT_COLOR_PRESETS`.
+- [x] **Brand color swatches for all color pickers** — All color pickers (Headline, Subtitle, Border, Title, Username) have 8 clickable brand palette presets via shared `ColorSwatches` component in `src/components/ui/ColorSwatches.tsx`.
+- [x] **Design collection (multi-page)** — Users can duplicate, delete, rename, and switch between multiple independent designs. Each design has its own complete state snapshot. Export downloads all designs. `Ctrl+D` to duplicate. Tab bar above canvas + floating Duplicate button on canvas.
+
+---
+
+## Planned Features
+
+### Feature: Canva-Style Vertical Page Layout
+**Status:** Approved, not yet implemented
+
+Replace the current tab-based design navigation with a Canva-style vertical scrollable page list:
+- **Vertical page list** — All designs stacked vertically in the canvas area, scrollable
+- **Thumbnail previews** — Inactive pages show captured screenshot thumbnails (not live-rendered)
+- **Active page** — Only the selected page renders the live editable canvas
+- **Per-page toolbar** — Above each page, with:
+  - Page label ("Page 1", "Page 2", etc.)
+  - Duplicate button
+  - Delete button
+  - Reorder up/down arrows
+- **Click to select** — Click any page to make it the active/editable one
+- **Export** — Downloads all pages as separate PNGs
+
+### Feature: Click-to-Select Canvas Sections
+**Status:** Approved, not yet implemented
+
+Click any layer/section on the canvas to automatically open its matching settings section in the properties panel:
+- Click **headline/subtitle text** → opens "Text" section
+- Click **logo** → opens "Logo" section
+- Click **community grid area** → opens "Community Grid" section
+- Click **decorative elements** (particles, cubes, etc.) → opens "Decorations" section
+- Click **background** → opens "Background" section
+
+Implementation approach:
+- Add click handlers to each canvas layer (currently all have `pointerEvents: 'none'`)
+- Create a mapping between canvas layers and properties panel accordion section IDs
+- Programmatically expand the matching accordion section on click
+- Section-level granularity only (not per-element)

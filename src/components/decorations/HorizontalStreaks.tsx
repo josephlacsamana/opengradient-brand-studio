@@ -6,6 +6,7 @@ interface Props {
   color: string
   width: number
   height: number
+  onClick?: (e: React.MouseEvent) => void
 }
 
 function seededRandom(seed: number): () => number {
@@ -16,7 +17,7 @@ function seededRandom(seed: number): () => number {
   }
 }
 
-export function HorizontalStreaks({ opacity, count, color, width, height }: Props) {
+export function HorizontalStreaks({ opacity, count, color, width, height, onClick }: Props) {
   const streaks = useMemo(() => {
     const rand = seededRandom(77)
     return Array.from({ length: count }, () => {
@@ -30,7 +31,8 @@ export function HorizontalStreaks({ opacity, count, color, width, height }: Prop
 
   return (
     <svg
-      style={{ position: 'absolute', inset: 0, opacity }}
+      onClick={onClick}
+      style={{ position: 'absolute', inset: 0, opacity, pointerEvents: onClick ? 'auto' : 'none', cursor: onClick ? 'pointer' : 'default' }}
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
     >
