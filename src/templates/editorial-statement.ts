@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const editorialStatement: TemplateDefinition = {
   id: 'editorial-statement',
-  name: 'Editorial Statement',
+  name: 'Template 10',
   description: 'Bold magazine-style editorial layout',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const editorialStatement: TemplateDefinition = {
     logoVariant: 'logotype',
     logoColor: 'cyan',
     logoPosition: 'top-left',
-    logoScale: 0.6,
+    logoScale: 1.5,
     logoPadding: 50,
     communityEnabled: false,
     communitySections: [],

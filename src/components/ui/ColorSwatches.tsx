@@ -28,7 +28,7 @@ export function ColorSwatches({ value, onChange }: ColorSwatchesProps) {
           className="relative w-5 h-5 rounded-full border-2 transition-transform hover:scale-110"
           style={{
             backgroundColor: color,
-            borderColor: value.toLowerCase() === color.toLowerCase() ? '#24BCE3' : 'rgba(255,255,255,0.15)',
+            borderColor: value.toLowerCase() === color.toLowerCase() ? '#24BCE3' : 'var(--ui-swatch-border)',
             boxShadow: value.toLowerCase() === color.toLowerCase() ? '0 0 0 2px rgba(36,188,227,0.4)' : 'none',
           }}
         />

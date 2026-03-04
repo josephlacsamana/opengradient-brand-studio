@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const teamSpotlight: TemplateDefinition = {
   id: 'team-spotlight',
-  name: 'Team Spotlight',
+  name: 'Template 11',
   description: 'Highlight a team member with name and role',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const teamSpotlight: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'cyan',
     logoPosition: 'top-left',
-    logoScale: 0.5,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

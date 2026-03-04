@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const darkTechStatement: TemplateDefinition = {
   id: 'dark-tech-statement',
-  name: 'Dark Statement',
+  name: 'Template 5',
   description: 'Bold two-line statement on dark teal gradient',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const darkTechStatement: TemplateDefinition = {
     logoVariant: 'symbol',
     logoColor: 'cyan',
     logoPosition: 'top-left',
-    logoScale: 0.6,
+    logoScale: 1.5,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

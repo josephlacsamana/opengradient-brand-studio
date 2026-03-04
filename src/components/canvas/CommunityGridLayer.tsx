@@ -81,10 +81,10 @@ export function CommunityGridLayer({ onLayerClick }: CommunityGridLayerProps) {
             {/* Members grid */}
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: `repeat(${columnsPerRow}, 1fr)`,
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
                 gap: '10px',
-                justifyItems: 'center',
               }}
             >
               {section.members.map((member, mIndex) => (
@@ -95,6 +95,7 @@ export function CommunityGridLayer({ onLayerClick }: CommunityGridLayerProps) {
                     flexDirection: 'column',
                     alignItems: 'center',
                     gap: '4px',
+                    width: `calc((100% - ${(columnsPerRow - 1) * 10}px) / ${columnsPerRow})`,
                   }}
                 >
                   {/* Avatar circle */}

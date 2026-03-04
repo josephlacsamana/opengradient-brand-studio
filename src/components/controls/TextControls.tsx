@@ -12,7 +12,7 @@ export function TextControls() {
         <textarea
           value={store.headline}
           onChange={e => store.setField('headline', e.target.value)}
-          className="w-full bg-brand-dark-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white resize-none focus:outline-none focus:border-brand-cyan/50"
+          className="w-full bg-brand-dark-950 border border-ui-border-subtle rounded-lg px-3 py-2 text-sm text-ui-primary resize-none focus:outline-none focus:border-brand-cyan/50"
           rows={3}
         />
       </div>
@@ -22,7 +22,7 @@ export function TextControls() {
         <textarea
           value={store.subtitle}
           onChange={e => store.setField('subtitle', e.target.value)}
-          className="w-full bg-brand-dark-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white resize-none focus:outline-none focus:border-brand-cyan/50"
+          className="w-full bg-brand-dark-950 border border-ui-border-subtle rounded-lg px-3 py-2 text-sm text-ui-primary resize-none focus:outline-none focus:border-brand-cyan/50"
           rows={2}
         />
       </div>
@@ -37,7 +37,7 @@ export function TextControls() {
               className={`flex-1 py-1.5 rounded-lg flex items-center justify-center transition-colors ${
                 store.textAlignment === align
                   ? 'bg-brand-cyan/20 text-brand-cyan'
-                  : 'bg-brand-dark-950 text-brand-dark-100 hover:text-white'
+                  : 'bg-brand-dark-950 text-brand-dark-100 hover:text-ui-primary'
               }`}
             >
               {align === 'left' && <AlignLeft size={16} />}
@@ -58,7 +58,7 @@ export function TextControls() {
               className={`flex-1 py-1.5 rounded-lg text-xs capitalize transition-colors ${
                 store.textVerticalPosition === pos
                   ? 'bg-brand-cyan/20 text-brand-cyan'
-                  : 'bg-brand-dark-950 text-brand-dark-100 hover:text-white'
+                  : 'bg-brand-dark-950 text-brand-dark-100 hover:text-ui-primary'
               }`}
             >
               {pos}

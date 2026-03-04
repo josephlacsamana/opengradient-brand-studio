@@ -1,5 +1,5 @@
 import { useEditorStore } from '../../store/editorStore'
-import { LOGO_VARIANTS } from '../../constants/logos'
+import { LOGO_VARIANTS, LOGO_SCALE_CONFIG } from '../../constants/logos'
 
 const POSITIONS = [
   { id: 'top-left', label: 'TL' },
@@ -16,7 +16,7 @@ export function LogoControls() {
   return (
     <div className="space-y-3 p-3">
       <div className="flex items-center justify-between">
-        <label className="text-xs text-white">Show Logo</label>
+        <label className="text-xs text-ui-primary">Show Logo</label>
         <button
           onClick={() => store.setField('logoEnabled', !store.logoEnabled)}
           className={`w-9 h-5 rounded-full transition-colors relative ${
@@ -37,8 +37,16 @@ export function LogoControls() {
             <label className="block text-xs text-brand-dark-100 mb-1">Variant</label>
             <select
               value={store.logoVariant}
-              onChange={e => store.setField('logoVariant', e.target.value as typeof store.logoVariant)}
-              className="w-full bg-brand-dark-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-cyan/50"
+              onChange={e => {
+                const variant = e.target.value as typeof store.logoVariant
+                store.setField('logoVariant', variant)
+                const cfg = LOGO_SCALE_CONFIG[variant]
+                const clamped = Math.max(cfg.min, Math.min(cfg.max, store.logoScale))
+                if (clamped !== store.logoScale || store.logoScale < cfg.min) {
+                  store.setField('logoScale', cfg.default)
+                }
+              }}
+              className="w-full bg-brand-dark-950 border border-ui-border-subtle rounded-lg px-3 py-2 text-sm text-ui-primary focus:outline-none focus:border-brand-cyan/50"
             >
               {LOGO_VARIANTS.map(v => (
                 <option key={v.id} value={v.id}>{v.label}</option>
@@ -56,7 +64,7 @@ export function LogoControls() {
                   className={`flex-1 py-1.5 rounded-lg text-xs capitalize transition-colors ${
                     store.logoColor === c
                       ? 'bg-brand-cyan/20 text-brand-cyan'
-                      : 'bg-brand-dark-950 text-brand-dark-100 hover:text-white'
+                      : 'bg-brand-dark-950 text-brand-dark-100 hover:text-ui-primary'
                   }`}
                 >
                   {c}
@@ -75,7 +83,7 @@ export function LogoControls() {
                   className={`py-1.5 rounded-lg text-xs transition-colors ${
                     store.logoPosition === p.id
                       ? 'bg-brand-cyan/20 text-brand-cyan'
-                      : 'bg-brand-dark-950 text-brand-dark-100 hover:text-white'
+                      : 'bg-brand-dark-950 text-brand-dark-100 hover:text-ui-primary'
                   }`}
                 >
                   {p.label}
@@ -85,17 +93,24 @@ export function LogoControls() {
           </div>
 
           <div>
-            <label className="block text-xs text-brand-dark-100 mb-1">
-              Scale: {store.logoScale.toFixed(1)}x
-            </label>
-            <input
-              type="range"
-              min={30}
-              max={200}
-              value={Math.round(store.logoScale * 100)}
-              onChange={e => store.setField('logoScale', Number(e.target.value) / 100)}
-              className="w-full accent-brand-cyan"
-            />
+            {(() => {
+              const cfg = LOGO_SCALE_CONFIG[store.logoVariant]
+              return (
+                <>
+                  <label className="block text-xs text-brand-dark-100 mb-1">
+                    Scale: {store.logoScale.toFixed(1)}x
+                  </label>
+                  <input
+                    type="range"
+                    min={Math.round(cfg.min * 100)}
+                    max={Math.round(cfg.max * 100)}
+                    value={Math.round(store.logoScale * 100)}
+                    onChange={e => store.setField('logoScale', Number(e.target.value) / 100)}
+                    className="w-full accent-brand-cyan"
+                  />
+                </>
+              )
+            })()}
           </div>
         </>
       )}

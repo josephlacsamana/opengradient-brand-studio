@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const minimalClean: TemplateDefinition = {
   id: 'minimal-clean',
-  name: 'Minimal Clean',
+  name: 'Template 9',
   description: 'Ultra-clean typography with generous whitespace',
   category: 'brand-gradient',
   defaults: {
@@ -37,7 +37,7 @@ export const minimalClean: TemplateDefinition = {
     logoVariant: 'symbol',
     logoColor: 'cyan',
     logoPosition: 'bottom-center',
-    logoScale: 0.5,
+    logoScale: 1.5,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

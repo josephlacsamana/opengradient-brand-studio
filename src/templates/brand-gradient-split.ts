@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const brandGradientSplit: TemplateDefinition = {
   id: 'brand-gradient-split',
-  name: 'Brand Gradient Split',
+  name: 'Template 2',
   description: 'Left-aligned text on diagonal brand gradient',
   category: 'brand-gradient',
   defaults: {
@@ -37,7 +37,7 @@ export const brandGradientSplit: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'white',
     logoPosition: 'top-left',
-    logoScale: 0.6,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

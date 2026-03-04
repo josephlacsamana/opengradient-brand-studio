@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const socialQuote: TemplateDefinition = {
   id: 'social-quote',
-  name: 'Quote Card',
+  name: 'Template 6',
   description: 'Quote-style card with subtle dark background',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const socialQuote: TemplateDefinition = {
     logoVariant: 'symbol',
     logoColor: 'cyan',
     logoPosition: 'bottom-right',
-    logoScale: 0.5,
+    logoScale: 1.5,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

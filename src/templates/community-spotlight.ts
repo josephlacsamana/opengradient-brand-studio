@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const communitySpotlight: TemplateDefinition = {
   id: 'community-spotlight',
-  name: 'Weekly Yappers',
+  name: 'Template 13',
   description: 'Multi-section community highlights with PFP grid',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const communitySpotlight: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'cyan',
     logoPosition: 'top-right',
-    logoScale: 0.6,
+    logoScale: 1.0,
     logoPadding: 30,
     communityEnabled: true,
     communitySections: [

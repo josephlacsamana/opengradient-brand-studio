@@ -107,11 +107,11 @@ export function CanvasArea({ canvasRef }: Props) {
                         if (e.key === 'Escape') setEditingId(null)
                       }}
                       onClick={e => e.stopPropagation()}
-                      className="bg-transparent border-b border-brand-cyan text-white text-xs outline-none w-32"
+                      className="bg-transparent border-b border-brand-cyan text-ui-primary text-xs outline-none w-32"
                     />
                   ) : (
                     <span
-                      className="text-xs text-brand-dark-100 cursor-pointer hover:text-white select-none"
+                      className="text-xs text-brand-dark-100 cursor-pointer hover:text-ui-primary select-none"
                       onDoubleClick={() => {
                         setEditingId(design.id)
                         setEditValue(design.name)
@@ -126,7 +126,7 @@ export function CanvasArea({ canvasRef }: Props) {
                   <button
                     onClick={() => moveDesign(design.id, 'up')}
                     disabled={index === 0}
-                    className="p-1 rounded hover:bg-white/10 text-brand-dark-100 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                    className="p-1 rounded hover:bg-ui-hover-overlay-strong text-brand-dark-100 hover:text-ui-primary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                     title="Move up"
                   >
                     <ChevronUp size={14} />
@@ -134,14 +134,14 @@ export function CanvasArea({ canvasRef }: Props) {
                   <button
                     onClick={() => moveDesign(design.id, 'down')}
                     disabled={index === designs.length - 1}
-                    className="p-1 rounded hover:bg-white/10 text-brand-dark-100 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                    className="p-1 rounded hover:bg-ui-hover-overlay-strong text-brand-dark-100 hover:text-ui-primary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                     title="Move down"
                   >
                     <ChevronDown size={14} />
                   </button>
                   <button
                     onClick={() => handleDuplicate(design.id, isActive)}
-                    className="p-1 rounded hover:bg-white/10 text-brand-dark-100 hover:text-brand-cyan transition-colors"
+                    className="p-1 rounded hover:bg-ui-hover-overlay-strong text-brand-dark-100 hover:text-brand-cyan transition-colors"
                     title="Duplicate"
                   >
                     <Copy size={14} />
@@ -149,7 +149,7 @@ export function CanvasArea({ canvasRef }: Props) {
                   {designs.length > 1 && (
                     <button
                       onClick={() => deleteDesign(design.id)}
-                      className="p-1 rounded hover:bg-white/10 text-brand-dark-100 hover:text-red-400 transition-colors"
+                      className="p-1 rounded hover:bg-ui-hover-overlay-strong text-brand-dark-100 hover:text-red-400 transition-colors"
                       title="Delete"
                     >
                       <Trash2 size={14} />
@@ -164,7 +164,7 @@ export function CanvasArea({ canvasRef }: Props) {
                 className={`rounded-lg overflow-hidden border-2 transition-colors ${
                   isActive
                     ? 'border-brand-cyan shadow-lg shadow-brand-cyan/20'
-                    : 'border-white/10 hover:border-white/30 cursor-pointer'
+                    : 'border-ui-border-subtle hover:border-ui-border-strong cursor-pointer'
                 }`}
               >
                 {isActive ? (
@@ -198,7 +198,7 @@ export function CanvasArea({ canvasRef }: Props) {
         {/* Add page button */}
         <button
           onClick={handleAddPage}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-dashed border-white/20 text-brand-dark-100 hover:text-brand-cyan hover:border-brand-cyan/40 transition-colors text-xs"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-dashed border-ui-border-medium text-brand-dark-100 hover:text-brand-cyan hover:border-brand-cyan/40 transition-colors text-xs"
         >
           <Plus size={14} />
           Add Page

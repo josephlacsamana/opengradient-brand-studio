@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const threadCloser: TemplateDefinition = {
   id: 'thread-closer',
-  name: 'Thread Closer',
+  name: 'Template 7',
   description: 'End of thread slide with logo watermark',
   category: 'dark-technical',
   defaults: {
@@ -15,7 +15,7 @@ export const threadCloser: TemplateDefinition = {
     subtitleFontFamily: 'Geist Mono',
     subtitleFontSize: 16,
     subtitleFontWeight: 400,
-    subtitleColor: '#6A7282',
+    subtitleColor: '#A7E4F4',
     textAlignment: 'center',
     textVerticalPosition: 'center',
     textPaddingX: 80,
@@ -29,7 +29,7 @@ export const threadCloser: TemplateDefinition = {
       particles: { enabled: false, opacity: 0.3, density: 40, color: '#40D1DB' },
       cubes: { enabled: false, opacity: 0.3, count: 5, color: '#40D1DB' },
       radialLines: { enabled: false, opacity: 0.2, color: '#24BCE3' },
-      streaks: { enabled: true, opacity: 0.1, count: 20, color: '#1D2C4B' },
+      streaks: { enabled: true, opacity: 0.1, count: 20, color: '#141E32' },
       nodes: { enabled: false, opacity: 0.3, nodeCount: 12, color: '#40D1DB' },
       glow: { enabled: false, opacity: 0.3, color: '#0E4B5B', x: 50, y: 50 },
     },
@@ -37,7 +37,7 @@ export const threadCloser: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'white',
     logoPosition: 'top-center',
-    logoScale: 0.5,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

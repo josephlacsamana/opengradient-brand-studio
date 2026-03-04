@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const brandGradientHero: TemplateDefinition = {
   id: 'brand-gradient-hero',
-  name: 'Brand Gradient Hero',
+  name: 'Template 1',
   description: 'Large centered headline on brand teal gradient',
   category: 'brand-gradient',
   defaults: {
@@ -37,7 +37,7 @@ export const brandGradientHero: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'white',
     logoPosition: 'top-center',
-    logoScale: 0.7,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

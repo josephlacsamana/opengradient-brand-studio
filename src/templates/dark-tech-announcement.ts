@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const darkTechAnnouncement: TemplateDefinition = {
   id: 'dark-tech-announcement',
-  name: 'Dark Announcement',
+  name: 'Template 3',
   description: 'Centered text on dark background with particle field',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const darkTechAnnouncement: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'cyan',
     logoPosition: 'top-center',
-    logoScale: 0.6,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

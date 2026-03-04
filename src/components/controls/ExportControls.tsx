@@ -24,7 +24,7 @@ export function ExportControls({ onExport, onExportAll }: Props) {
               className={`py-1.5 px-2 rounded-lg text-xs text-left transition-colors ${
                 selectedPresetId === p.id
                   ? 'bg-brand-cyan/20 text-brand-cyan'
-                  : 'bg-brand-dark-950 text-brand-dark-100 hover:text-white'
+                  : 'bg-brand-dark-950 text-brand-dark-100 hover:text-ui-primary'
               }`}
             >
               <div className="font-medium">{p.label}</div>
@@ -44,7 +44,7 @@ export function ExportControls({ onExport, onExportAll }: Props) {
               type="number"
               value={customWidth}
               onChange={e => setCustomDimensions(Number(e.target.value), customHeight)}
-              className="w-full bg-brand-dark-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-cyan/50"
+              className="w-full bg-brand-dark-950 border border-ui-border-subtle rounded-lg px-3 py-2 text-sm text-ui-primary focus:outline-none focus:border-brand-cyan/50"
               min={100}
               max={4000}
             />
@@ -55,7 +55,7 @@ export function ExportControls({ onExport, onExportAll }: Props) {
               type="number"
               value={customHeight}
               onChange={e => setCustomDimensions(customWidth, Number(e.target.value))}
-              className="w-full bg-brand-dark-950 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-cyan/50"
+              className="w-full bg-brand-dark-950 border border-ui-border-subtle rounded-lg px-3 py-2 text-sm text-ui-primary focus:outline-none focus:border-brand-cyan/50"
               min={100}
               max={4000}
             />
@@ -71,7 +71,7 @@ export function ExportControls({ onExport, onExportAll }: Props) {
         <button
           onClick={onExport}
           disabled={isExporting}
-          className="w-full flex items-center justify-center gap-2 bg-brand-cyan text-brand-dark-950 font-semibold py-2.5 rounded-lg hover:bg-brand-cyan-400 transition-colors disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2 bg-brand-cyan text-ui-on-accent font-semibold py-2.5 rounded-lg hover:bg-brand-cyan-400 transition-colors disabled:opacity-50"
         >
           <Download size={16} />
           {isExporting && exportProgress > 0
@@ -84,7 +84,7 @@ export function ExportControls({ onExport, onExportAll }: Props) {
         <button
           onClick={onExportAll}
           disabled={isExporting}
-          className="w-full flex items-center justify-center gap-2 bg-brand-dark-950 text-brand-dark-100 border border-white/10 py-2 rounded-lg hover:text-white hover:border-white/20 transition-colors disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2 bg-brand-dark-950 text-brand-dark-100 border border-ui-border-subtle py-2 rounded-lg hover:text-ui-primary hover:border-ui-border-medium transition-colors disabled:opacity-50"
         >
           <Layers size={16} />
           {isExporting && exportProgress > 0

@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const communityTopContributor: TemplateDefinition = {
   id: 'community-top-contributor',
-  name: 'Top 6 Members',
+  name: 'Template 14',
   description: 'Highlight 6 community members in a clean grid',
   category: 'brand-gradient',
   defaults: {
@@ -35,9 +35,9 @@ export const communityTopContributor: TemplateDefinition = {
     },
     logoEnabled: true,
     logoVariant: 'lockup-horizontal',
-    logoColor: 'white',
+    logoColor: 'cyan',
     logoPosition: 'bottom-center',
-    logoScale: 0.5,
+    logoScale: 1.0,
     logoPadding: 30,
     communityEnabled: true,
     communitySections: [

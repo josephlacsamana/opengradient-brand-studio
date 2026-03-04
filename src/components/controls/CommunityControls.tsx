@@ -166,7 +166,7 @@ export function CommunityControls() {
       </div>
 
       {/* Sections */}
-      <div className="border-t border-white/5 pt-3">
+      <div className="border-t border-ui-border pt-3">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-semibold text-brand-dark-100 uppercase tracking-wider">Sections</span>
           <button
@@ -184,7 +184,7 @@ export function CommunityControls() {
                 type="text"
                 value={section.title}
                 onChange={e => setCommunityTitle(sIndex, e.target.value)}
-                className="flex-1 bg-transparent border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-brand-cyan/50"
+                className="flex-1 bg-transparent border border-ui-border-subtle rounded px-2 py-1 text-xs text-ui-primary focus:outline-none focus:border-brand-cyan/50"
               />
               {communitySections.length > 1 && (
                 <button
@@ -203,7 +203,7 @@ export function CommunityControls() {
                   {/* Avatar preview / upload button */}
                   <button
                     onClick={() => handleImageUpload(sIndex, mIndex)}
-                    className="w-8 h-8 rounded-full border border-white/20 overflow-hidden flex-shrink-0 flex items-center justify-center hover:border-brand-cyan/50 transition-colors"
+                    className="w-8 h-8 rounded-full border border-ui-border-medium overflow-hidden flex-shrink-0 flex items-center justify-center hover:border-brand-cyan/50 transition-colors"
                   >
                     {member.imageUrl ? (
                       <img src={member.imageUrl} alt="" className="w-full h-full object-cover" />
@@ -217,7 +217,7 @@ export function CommunityControls() {
                     type="text"
                     value={member.username}
                     onChange={e => setCommunityMemberUsername(sIndex, mIndex, e.target.value)}
-                    className="flex-1 bg-transparent border border-white/10 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-brand-cyan/50"
+                    className="flex-1 bg-transparent border border-ui-border-subtle rounded px-2 py-1 text-xs text-ui-primary focus:outline-none focus:border-brand-cyan/50"
                   />
 
                   {/* Remove button */}
@@ -234,7 +234,7 @@ export function CommunityControls() {
             {/* Add member button */}
             <button
               onClick={() => addCommunityMember(sIndex)}
-              className="mt-2 w-full py-1 text-xs text-brand-dark-100 hover:text-brand-cyan border border-dashed border-white/10 hover:border-brand-cyan/30 rounded transition-colors flex items-center justify-center gap-1"
+              className="mt-2 w-full py-1 text-xs text-brand-dark-100 hover:text-brand-cyan border border-dashed border-ui-border-subtle hover:border-brand-cyan/30 rounded transition-colors flex items-center justify-center gap-1"
             >
               <Plus size={12} /> Add Member
             </button>

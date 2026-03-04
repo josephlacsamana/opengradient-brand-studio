@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const communityAward: TemplateDefinition = {
   id: 'community-award',
-  name: 'Top 4 Members',
+  name: 'Template 15',
   description: 'Spotlight 4 community members with large avatars',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const communityAward: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'cyan',
     logoPosition: 'bottom-center',
-    logoScale: 0.5,
+    logoScale: 1.0,
     logoPadding: 30,
     communityEnabled: true,
     communitySections: [

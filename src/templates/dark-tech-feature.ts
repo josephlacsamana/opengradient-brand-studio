@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const darkTechFeature: TemplateDefinition = {
   id: 'dark-tech-feature',
-  name: 'Dark Feature',
+  name: 'Template 4',
   description: 'Feature highlight with geometric cubes on dark background',
   category: 'dark-technical',
   defaults: {
@@ -37,7 +37,7 @@ export const darkTechFeature: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'cyan',
     logoPosition: 'top-left',
-    logoScale: 0.5,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

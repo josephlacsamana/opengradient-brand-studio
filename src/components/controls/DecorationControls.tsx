@@ -21,7 +21,7 @@ export function DecorationControls() {
       {entries.map(([type, config]) => (
         <div key={type} className="space-y-1">
           <div className="flex items-center justify-between">
-            <label className="text-xs text-white">{DECORATION_LABELS[type]}</label>
+            <label className="text-xs text-ui-primary">{DECORATION_LABELS[type]}</label>
             <button
               onClick={() => setDecoration(type, 'enabled', !config.enabled)}
               className={`w-9 h-5 rounded-full transition-colors relative ${

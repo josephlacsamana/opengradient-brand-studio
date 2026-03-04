@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const blogCover: TemplateDefinition = {
   id: 'blog-cover',
-  name: 'Blog Cover',
+  name: 'Template 8',
   description: 'Wide format blog header with connected nodes',
   category: 'brand-gradient',
   defaults: {
@@ -37,7 +37,7 @@ export const blogCover: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'white',
     logoPosition: 'top-left',
-    logoScale: 0.5,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

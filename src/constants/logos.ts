@@ -47,6 +47,13 @@ export const LOGO_VARIANTS: LogoVariant[] = [
   },
 ];
 
+export const LOGO_SCALE_CONFIG: Record<LogoVariant['id'], { default: number; min: number; max: number }> = {
+  'symbol':             { default: 1.5, min: 1.5, max: 3.0 },
+  'lockup-horizontal':  { default: 1.0, min: 1.0, max: 3.0 },
+  'logotype':           { default: 1.5, min: 1.5, max: 3.0 },
+  'logotype-stacked':   { default: 2.0, min: 2.0, max: 4.0 },
+}
+
 export function getLogoPath(
   variant: LogoVariant['id'],
   color: 'cyan' | 'white' | 'black'

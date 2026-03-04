@@ -38,10 +38,10 @@ function Section({ sectionId, title, defaultOpen = false, children }: SectionPro
   }, [focusedSection, sectionId, setFocusedSection])
 
   return (
-    <div ref={sectionRef} className="border-b border-white/5">
+    <div ref={sectionRef} className="border-b border-ui-border">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between p-3 hover:bg-white/5 transition-colors"
+        className="w-full flex items-center justify-between p-3 hover:bg-ui-hover-overlay transition-colors"
       >
         <span className="text-xs font-semibold text-brand-dark-100 uppercase tracking-wider">{title}</span>
         <ChevronDown
@@ -56,7 +56,7 @@ function Section({ sectionId, title, defaultOpen = false, children }: SectionPro
 
 export function PropertiesPanel({ onExport, onExportAll }: Props) {
   return (
-    <aside className="h-full overflow-y-auto bg-brand-dark-800 border-l border-white/5">
+    <aside className="h-full overflow-y-auto bg-brand-dark-800 border-l border-ui-border">
       <Section sectionId="text" title="Text" defaultOpen>
         <TextControls />
       </Section>

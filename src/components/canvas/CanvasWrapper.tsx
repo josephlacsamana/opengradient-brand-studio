@@ -29,7 +29,7 @@ export function CanvasWrapper({ canvasRef }: CanvasWrapperProps) {
         style={{
           transform: `scale(${scale})`,
           transformOrigin: 'center center',
-          boxShadow: '0 4px 60px rgba(0,0,0,0.5)',
+          boxShadow: '0 4px 60px var(--ui-canvas-shadow)',
           borderRadius: '4px',
         }}
       >

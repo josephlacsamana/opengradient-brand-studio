@@ -3,8 +3,66 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Surface colors (hex values) */
+    --ui-surface-base: #0A0F19;
+    --ui-surface-raised: #141E32;
+    --ui-surface-hover: #1D2C4B;
+
+    /* Text colors */
+    --ui-text-primary: #FFFFFF;
+    --ui-text-muted: #BFC8DC;
+    --ui-on-accent: #041317;
+
+    /* Border colors */
+    --ui-border: rgba(255,255,255,0.05);
+    --ui-border-subtle: rgba(255,255,255,0.10);
+    --ui-border-medium: rgba(255,255,255,0.20);
+    --ui-border-strong: rgba(255,255,255,0.30);
+
+    /* Hover overlays */
+    --ui-hover-overlay: rgba(255,255,255,0.05);
+    --ui-hover-overlay-strong: rgba(255,255,255,0.10);
+
+    /* Scrollbar */
+    --ui-scrollbar-track: #141E32;
+    --ui-scrollbar-thumb: #0E4B5B;
+    --ui-scrollbar-thumb-hover: #167188;
+
+    /* Misc */
+    --ui-canvas-shadow: rgba(0,0,0,0.5);
+    --ui-swatch-border: rgba(255,255,255,0.15);
+  }
+
+  [data-theme="light"] {
+    --ui-surface-base: #F8FAFB;
+    --ui-surface-raised: #FFFFFF;
+    --ui-surface-hover: #EFF2F5;
+
+    --ui-text-primary: #0E4B5B;
+    --ui-text-muted: #4A6670;
+    --ui-on-accent: #041317;
+
+    --ui-border: rgba(14,75,91,0.08);
+    --ui-border-subtle: rgba(14,75,91,0.12);
+    --ui-border-medium: rgba(14,75,91,0.20);
+    --ui-border-strong: rgba(14,75,91,0.30);
+
+    --ui-hover-overlay: rgba(14,75,91,0.05);
+    --ui-hover-overlay-strong: rgba(14,75,91,0.10);
+
+    --ui-scrollbar-track: #EFF2F5;
+    --ui-scrollbar-thumb: #BDEBF7;
+    --ui-scrollbar-thumb-hover: #24BCE3;
+
+    --ui-canvas-shadow: rgba(0,0,0,0.15);
+    --ui-swatch-border: rgba(14,75,91,0.20);
+  }
+
   body {
-    @apply bg-brand-dark-950 text-white antialiased;
+    background-color: var(--ui-surface-base);
+    color: var(--ui-text-primary);
+    -webkit-font-smoothing: antialiased;
     margin: 0;
     overflow: hidden;
   }
@@ -13,13 +71,13 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #141E32;
+    background: var(--ui-scrollbar-track);
   }
   ::-webkit-scrollbar-thumb {
-    background: #0E4B5B;
+    background: var(--ui-scrollbar-thumb);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #167188;
+    background: var(--ui-scrollbar-thumb-hover);
   }
 }

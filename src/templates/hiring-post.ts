@@ -2,7 +2,7 @@ import type { TemplateDefinition } from '../types/template'
 
 export const hiringPost: TemplateDefinition = {
   id: 'hiring-post',
-  name: 'Hiring Post',
+  name: 'Template 12',
   description: 'Recruitment card for open positions',
   category: 'brand-gradient',
   defaults: {
@@ -37,7 +37,7 @@ export const hiringPost: TemplateDefinition = {
     logoVariant: 'lockup-horizontal',
     logoColor: 'white',
     logoPosition: 'top-center',
-    logoScale: 0.6,
+    logoScale: 1.0,
     logoPadding: 40,
     communityEnabled: false,
     communitySections: [],

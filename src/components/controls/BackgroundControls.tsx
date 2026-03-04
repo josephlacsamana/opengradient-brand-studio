@@ -27,7 +27,7 @@ export function BackgroundControls() {
               className={`h-12 rounded-lg transition-all ${
                 backgroundPresetId === p.id
                   ? 'ring-2 ring-brand-cyan'
-                  : 'ring-1 ring-white/10 hover:ring-white/30'
+                  : 'ring-1 ring-ui-border-subtle hover:ring-ui-border-strong'
               }`}
               style={{ background: p.value }}
               title={p.label}
@@ -46,7 +46,7 @@ export function BackgroundControls() {
               className={`h-12 rounded-lg transition-all ${
                 backgroundPresetId === p.id
                   ? 'ring-2 ring-brand-cyan'
-                  : 'ring-1 ring-white/10 hover:ring-white/30'
+                  : 'ring-1 ring-ui-border-subtle hover:ring-ui-border-strong'
               }`}
               style={{ background: p.value }}
               title={p.label}
