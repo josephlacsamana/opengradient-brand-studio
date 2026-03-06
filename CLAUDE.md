@@ -392,6 +392,7 @@ All exports are at `pixelRatio: 2` for retina quality.
 | `Ctrl+Shift+Z` | Redo |
 | `Ctrl+E` | Export current size |
 | `Ctrl+D` | Duplicate current design |
+| `Ctrl+Shift+C` | Copy to clipboard |
 
 ---
 
@@ -495,3 +496,38 @@ Implementation approach:
 - Create a mapping between canvas layers and properties panel accordion section IDs
 - Programmatically expand the matching accordion section on click
 - Section-level granularity only (not per-element)
+
+---
+
+## Development Roadmap
+
+### Phase 1: Copy to Clipboard
+**Status:** Implemented
+**Priority:** Quick win — zero canvas UI changes
+
+- Add "Copy to Clipboard" button next to Export button
+- Use Clipboard API (`navigator.clipboard.write()` with PNG blob)
+- Fallback for browsers without clipboard support
+- Toast notification on success ("Copied!")
+- Keyboard shortcut: `Ctrl+Shift+C`
+
+### Phase 2: Batch Export
+**Status:** Implemented
+**Priority:** Extends existing export pipeline, no canvas changes
+
+- Add "Export All Sizes" button in Export controls
+- Run export pipeline sequentially for each size preset (Twitter Post, Header, LinkedIn, Instagram, Blog Cover)
+- Download as individual PNGs with naming: `design-name-1200x675.png`
+- Progress indicator showing current/total exports
+- Checkboxes to select which sizes to include
+
+### Phase 3: Drag-to-Position
+**Status:** Not yet implemented
+**Priority:** Biggest UX upgrade — requires canvas interaction rework
+
+- Add `pointerEvents: 'auto'` + drag handlers to ImageLayer and TextLayer
+- Track `mousedown` → `mousemove` → `mouseup` with position delta
+- Convert pixel movement to percentage-based X/Y values
+- Update store in real-time during drag (debounced)
+- Visual cursor change on hover (`grab` → `grabbing`)
+- Sliders stay synced — dragging updates slider values and vice versa

@@ -58,17 +58,66 @@ export async function exportCanvasToPng(
   }
 }
 
+export async function copyCanvasToClipboard(
+  canvasElement: HTMLElement,
+  options: Omit<ExportOptions, 'filename'>
+): Promise<void> {
+  const { targetWidth, targetHeight, pixelRatio = 2 } = options
+
+  await waitForFonts()
+
+  const clone = canvasElement.cloneNode(true) as HTMLElement
+  clone.style.transform = 'none'
+  clone.style.width = `${targetWidth}px`
+  clone.style.height = `${targetHeight}px`
+  clone.style.position = 'relative'
+
+  const offscreen = document.createElement('div')
+  offscreen.style.position = 'fixed'
+  offscreen.style.left = '-99999px'
+  offscreen.style.top = '0'
+  offscreen.style.overflow = 'visible'
+  offscreen.appendChild(clone)
+  document.body.appendChild(offscreen)
+
+  const fontCSS = await generateFontFaceCSS()
+  if (fontCSS) {
+    const styleEl = document.createElement('style')
+    styleEl.textContent = fontCSS
+    clone.prepend(styleEl)
+  }
+
+  try {
+    const dataUrl = await toPng(clone, {
+      width: targetWidth,
+      height: targetHeight,
+      pixelRatio,
+      cacheBust: true,
+    })
+
+    const res = await fetch(dataUrl)
+    const blob = await res.blob()
+    await navigator.clipboard.write([
+      new ClipboardItem({ 'image/png': blob }),
+    ])
+  } finally {
+    document.body.removeChild(offscreen)
+  }
+}
+
 export async function exportAllSizes(
   canvasElement: HTMLElement,
   sizes: Array<{ id: string; width: number; height: number }>,
-  onProgress?: (percent: number) => void
+  onProgress?: (percent: number) => void,
+  designName?: string
 ): Promise<void> {
+  const prefix = designName || 'opengradient'
   for (let i = 0; i < sizes.length; i++) {
     const size = sizes[i]!
     await exportCanvasToPng(canvasElement, {
       targetWidth: size.width,
       targetHeight: size.height,
-      filename: `opengradient-${size.id}-${size.width}x${size.height}.png`,
+      filename: `${prefix}-${size.width}x${size.height}.png`,
     })
     onProgress?.(((i + 1) / sizes.length) * 100)
     // Brief pause between exports to avoid overwhelming the browser

@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react'
 import { useExportStore } from '../store/exportStore'
-import { exportCanvasToPng, exportAllSizes } from '../lib/exportPipeline'
+import { exportCanvasToPng, exportAllSizes, copyCanvasToClipboard } from '../lib/exportPipeline'
 import { EXPORT_SIZE_PRESETS } from '../constants/exportSizes'
 import { useDesignCollectionStore } from '../store/designCollectionStore'
 import { loadEditorState } from '../lib/editorStateUtils'
@@ -47,20 +47,47 @@ export function useExport() {
     }
   }, [])
 
-  const exportAll = useCallback(async () => {
+  const exportAll = useCallback(async (selectedSizeIds?: string[]) => {
     if (!canvasRef.current) return
-    const sizes = EXPORT_SIZE_PRESETS.filter(p => p.id !== 'custom')
+    const allSizes = EXPORT_SIZE_PRESETS.filter(p => p.id !== 'custom')
+    const sizes = selectedSizeIds
+      ? allSizes.filter(p => selectedSizeIds.includes(p.id))
+      : allSizes
+    if (sizes.length === 0) return
+
+    const designName = useDesignCollectionStore.getState().designs
+      .find(d => d.id === useDesignCollectionStore.getState().activeDesignId)
+      ?.name.replace(/\s+/g, '-').toLowerCase() ?? 'design'
+
     useExportStore.getState().setExporting(true)
     useExportStore.getState().setProgress(0)
     try {
       await exportAllSizes(canvasRef.current, sizes, (percent) => {
         useExportStore.getState().setProgress(percent)
-      })
+      }, designName)
     } finally {
       useExportStore.getState().setExporting(false)
       useExportStore.getState().setProgress(0)
     }
   }, [])
 
-  return { canvasRef, exportCurrent, exportAll }
+  const copyToClipboard = useCallback(async () => {
+    if (!canvasRef.current) return
+    const { customWidth: width, customHeight: height } = useExportStore.getState()
+
+    useExportStore.getState().setExporting(true)
+    try {
+      await copyCanvasToClipboard(canvasRef.current, {
+        targetWidth: width,
+        targetHeight: height,
+      })
+      return true
+    } catch {
+      return false
+    } finally {
+      useExportStore.getState().setExporting(false)
+    }
+  }, [])
+
+  return { canvasRef, exportCurrent, exportAll, copyToClipboard }
 }

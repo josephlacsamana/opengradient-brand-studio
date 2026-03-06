@@ -5,6 +5,7 @@ interface ShortcutHandlers {
   onRedo?: () => void
   onExport?: () => void
   onDuplicate?: () => void
+  onCopyToClipboard?: () => void
 }
 
 export function useKeyboardShortcuts(handlers: ShortcutHandlers) {
@@ -27,6 +28,10 @@ export function useKeyboardShortcuts(handlers: ShortcutHandlers) {
       if (isCtrl && e.key === 'd') {
         e.preventDefault()
         handlers.onDuplicate?.()
+      }
+      if (isCtrl && e.shiftKey && e.key === 'C') {
+        e.preventDefault()
+        handlers.onCopyToClipboard?.()
       }
     }
 

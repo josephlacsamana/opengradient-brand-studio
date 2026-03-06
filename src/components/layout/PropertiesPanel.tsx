@@ -12,7 +12,8 @@ import { useUIStore, type PanelSectionId } from '../../store/uiStore'
 
 interface Props {
   onExport: () => void
-  onExportAll: () => void
+  onExportAll: (selectedSizeIds?: string[]) => void
+  onCopyToClipboard: () => Promise<boolean | undefined>
 }
 
 interface SectionProps {
@@ -55,7 +56,7 @@ function Section({ sectionId, title, defaultOpen = false, children }: SectionPro
   )
 }
 
-export function PropertiesPanel({ onExport, onExportAll }: Props) {
+export function PropertiesPanel({ onExport, onExportAll, onCopyToClipboard }: Props) {
   return (
     <aside className="h-full overflow-y-auto bg-brand-dark-800 border-l border-ui-border">
       <Section sectionId="text" title="Text" defaultOpen>
@@ -80,7 +81,7 @@ export function PropertiesPanel({ onExport, onExportAll }: Props) {
         <CommunityControls />
       </Section>
       <Section sectionId="export" title="Export" defaultOpen>
-        <ExportControls onExport={onExport} onExportAll={onExportAll} />
+        <ExportControls onExport={onExport} onExportAll={onExportAll} onCopyToClipboard={onCopyToClipboard} />
       </Section>
     </aside>
   )

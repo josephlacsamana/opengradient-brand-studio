@@ -5,13 +5,14 @@ import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { useDesignCollectionStore } from './store/designCollectionStore'
 
 function App() {
-  const { canvasRef, exportCurrent, exportAll } = useExport()
+  const { canvasRef, exportCurrent, exportAll, copyToClipboard } = useExport()
   const fontsLoaded = useFontLoader()
   const duplicateDesign = useDesignCollectionStore(s => s.duplicateDesign)
 
   useKeyboardShortcuts({
     onExport: exportCurrent,
     onDuplicate: duplicateDesign,
+    onCopyToClipboard: copyToClipboard,
   })
 
   if (!fontsLoaded) {
@@ -30,6 +31,7 @@ function App() {
       canvasRef={canvasRef}
       onExport={exportCurrent}
       onExportAll={exportAll}
+      onCopyToClipboard={copyToClipboard}
     />
   )
 }

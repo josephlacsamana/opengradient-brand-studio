@@ -9,10 +9,11 @@ import { Download, Sun, Moon } from 'lucide-react'
 interface Props {
   canvasRef: React.RefObject<HTMLDivElement | null>
   onExport: () => void
-  onExportAll: () => void
+  onExportAll: (selectedSizeIds?: string[]) => void
+  onCopyToClipboard: () => Promise<boolean | undefined>
 }
 
-export function AppShell({ canvasRef, onExport, onExportAll }: Props) {
+export function AppShell({ canvasRef, onExport, onExportAll, onCopyToClipboard }: Props) {
   const designCount = useDesignCollectionStore(s => s.designs.length)
   const isExporting = useExportStore(s => s.isExporting)
   const exportProgress = useExportStore(s => s.exportProgress)
@@ -59,7 +60,7 @@ export function AppShell({ canvasRef, onExport, onExportAll }: Props) {
           <CanvasArea canvasRef={canvasRef} />
         </div>
         <div className="w-80 shrink-0">
-          <PropertiesPanel onExport={onExport} onExportAll={onExportAll} />
+          <PropertiesPanel onExport={onExport} onExportAll={onExportAll} onCopyToClipboard={onCopyToClipboard} />
         </div>
       </div>
     </div>
